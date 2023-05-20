@@ -1,0 +1,30 @@
+#gameBox {
+    position: relative;
+    height: 480px;
+    width: 640px;
+    border: 1px solid black;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#bird {
+    position: absolute;
+    width: 31px;
+    height: 26px;
+    background-image: url(Birds/Blue.png);
+}
+
+#gameOver{
+    position: absolute; 
+    width: 500px; 
+    height: 480px; 
+    text-align: center; 
+    line-height: 480px; 
+    font-size: 24px;
+}
+
+#obstacleTop, #obstacleBottom {
+    position: absolute;
+    width: 50px;
+    background: green;
+}
