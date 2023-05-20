@@ -86,9 +86,6 @@ function update() {
     requestAnimationFrame(update);
 }
 
-
-
-
 window.addEventListener('click', fly);
 window.addEventListener('touchstart', fly);
 window.addEventListener('keydown', function(e){
@@ -101,4 +98,3 @@ bird.style.display = 'none';
 scoreTag.style.display = 'none';
 
 update();
-
