@@ -5,6 +5,14 @@
     border: 1px solid black;
     margin: 0 auto;
     overflow: hidden;
+    background-image: url(images/background.png);
+}
+
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 #bird {
@@ -15,16 +23,55 @@
 }
 
 #gameOver{
-    position: absolute; 
-    width: 500px; 
-    height: 480px; 
-    text-align: center; 
-    line-height: 480px; 
-    font-size: 24px;
+    position: inherit;
+    left: 40%;
+    top: 46%;
+    text-align: center;
+    font-size: 18px;
 }
 
 #obstacleTop, #obstacleBottom {
     position: absolute;
     width: 50px;
     background: green;
+}
+#medalBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    z-index: 1000; /* this should be higher than the z-index of any other element on the page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#medalContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-top: 30%;
+    width: 40%;
+    margin-left: 24%;
+}
+
+#goldMedal, #silverMedal, #bronzeMedal {
+    display: none;
+    width: 50px; /* You can adjust this value to change the size of the medals */
+    height: 50px; /* You can adjust this value to change the size of the medals */
+}
+
+#goldMedal {
+    background-image: url('images/gold.png');
+}
+
+#silverMedal {
+    background-image: url('images/silver.png');
+}
+
+#bronzeMedal {
+    background-image: url('images/bronze.png');
 }
