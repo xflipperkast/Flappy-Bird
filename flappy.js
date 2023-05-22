@@ -47,8 +47,6 @@ function startGame() {
     gameOverTag.style.position = 'absolute';
 }
 
-
-
 function gameOver() {
     isGameStarted = false;
 
@@ -87,8 +85,6 @@ function gameOver() {
 
     fallToGround();
 }
-
-
 
 function update() {
     birdY += velocity;
@@ -142,4 +138,3 @@ bird.style.display = 'none';
 scoreTag.style.display = 'none';
 
 update();
-
