@@ -30,21 +30,65 @@ function startGame() {
     birdY = 200;
     birdX = 100;
     isGameStarted = true;
-    gameOverTag.style.display = 'none';
     bird.style.display = 'block';
     scoreTag.style.display = 'block';
+
+    // Hide medal box and medals
+    var medalBox = document.getElementById('medalBox');
+    var goldMedal = document.getElementById('goldMedal');
+    var silverMedal = document.getElementById('silverMedal');
+    var bronzeMedal = document.getElementById('bronzeMedal');
+
+    medalBox.style.display = 'none';
+    goldMedal.style.display = 'none';
+    silverMedal.style.display = 'none';
+    bronzeMedal.style.display = 'none';
+
+    gameOverTag.style.position = 'absolute';
 }
+
+
 
 function gameOver() {
     isGameStarted = false;
-    gameOverTag.style.display = 'block';
-    bird.style.display = 'none';
-    scoreTag.style.display = 'none';
-    birdY = 200;
-    obstacleX = 650;
-    score = 0;
-    velocity = 0;
+
+    // New game over animation
+    function fallToGround() {
+        if (birdY < 480) { // 480 is the height of the game area
+            birdY += 10; // This moves the bird down
+            bird.style.top = birdY + 'px';
+            requestAnimationFrame(fallToGround);
+        } else {
+            bird.style.display = 'none';
+            gameOverTag.style.display = 'block';
+            scoreTag.style.display = 'block';
+            birdY = 200;
+            obstacleX = 650;
+            velocity = 0;
+
+            // Show medal box and appropriate medal
+            var medalBox = document.getElementById('medalBox');
+            var goldMedal = document.getElementById('goldMedal');
+            var silverMedal = document.getElementById('silverMedal');
+            var bronzeMedal = document.getElementById('bronzeMedal');
+
+            if (score >= 100) {
+                goldMedal.style.display = 'block';
+            } else if (score >= 50) {
+                silverMedal.style.display = 'block';
+            } else {
+                bronzeMedal.style.display = 'block';
+            }
+            
+            score = 0;
+            medalBox.style.display = 'block';
+        }
+    }
+
+    fallToGround();
 }
+
+
 
 function update() {
     birdY += velocity;
@@ -98,3 +142,4 @@ bird.style.display = 'none';
 scoreTag.style.display = 'none';
 
 update();
+
