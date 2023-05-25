@@ -14,3 +14,12 @@ SOON MORE INFO
 | Space | Fly |
 | Click| Fly |
 | Touch| Fly |
+
+
+## Medals
+
+| Medal | Score |
+| ------ | ------ |
+| 0- 49 | Bonze |
+| 50-99 | Silver |
+| 100+ | Gold |
