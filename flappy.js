@@ -85,13 +85,9 @@ function gameOver() {
         obstacleX = 650;
         velocity = 0;
 
-        if (score >= 100) {
-            goldMedal.style.display = 'block';
-        } else if (score >= 50) {
-            silverMedal.style.display = 'block';
-        } else {
-            bronzeMedal.style.display = 'block';
-        }
+        goldMedal.style.display = (score >= 100) ? 'block' : 'none';
+        silverMedal.style.display = (score >= 50 && score < 100) ? 'block' : 'none';
+        bronzeMedal.style.display = (score < 50) ? 'block' : 'none';
         
         score = 0;
         medalBox.style.display = 'block';
