@@ -9,11 +9,12 @@ const goldMedal = document.getElementById('goldMedal');
 const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
 
+const birds = ["Yellow", "Blue", "Red"];
+let lastBird = birds.length;
 let birdY = 200;
 let birdX = 100;
 let obstacleX = 650; // Set initial pipe position outside of the game area
 let score = 0;
-const gravity = 0.2; // Modify this to adjust the falling speed
 let velocity = 0;
 let isGameStarted = false;
 let isDead = false;
@@ -31,17 +32,28 @@ const interval = 1000/fps;
 let delta;
 
 // Speed decider
-const flyHeight = -6;
+const flyHeight = -8;
+const obstacleVelocity = 10;
+const gravity = 0.4;
 
 function fly() {
     if (!isGameStarted && !isDead) {
         startGame();
     }
     velocity = flyHeight;
-    bird.style.transform = 'rotate(-20deg)'; // Rotate the bird upward
 }
 
 function startGame() {
+    let birdChoice = Math.round(Math.random() * birds.length);
+    
+    while (birdChoice === lastBird || birdChoice === birds.length) {
+        birdChoice = Math.round(Math.random() * birds.length);
+    }
+
+    console.log(birdChoice);
+    bird.style.backgroundImage = `url(Birds/${birds[birdChoice]}.png)`;
+    lastBird = birdChoice;
+
     birdY = 200;
     birdX = 100;
     isGameStarted = true;
@@ -85,9 +97,13 @@ function gameOver() {
         obstacleX = 650;
         velocity = 0;
 
-        goldMedal.style.display = (score >= 100) ? 'block' : 'none';
-        silverMedal.style.display = (score >= 50 && score < 100) ? 'block' : 'none';
-        bronzeMedal.style.display = (score < 50) ? 'block' : 'none';
+        if (score >= 100) {
+            goldMedal.style.display = 'block';
+        } else if (score >= 50) {
+            silverMedal.style.display = 'block';
+        } else {
+            bronzeMedal.style.display = 'block';
+        }
         
         score = 0;
         medalBox.style.display = 'block';
@@ -112,14 +128,12 @@ function update() {
 
     birdY += velocity;
     velocity += gravity;
-    obstacleX -= 5; // This makes the pipe move from right to left
+    obstacleX -= obstacleVelocity; // This makes the pipe move from right to left
 
     bird.style.top = birdY + 'px';
     bird.style.left = birdX + 'px';
 
-    if(velocity > 0) {
-        bird.style.transform = `rotate(${Math.min(velocity * 3, 90)}deg)`;
-    }
+    bird.style.transform = `rotate(${Math.min(velocity * 4, 90)}deg)`;
 
     obstacleTop.style.left = obstacleX + 'px';
     obstacleTop.style.height = obstacleTopHeight + 'px';
