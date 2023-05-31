@@ -4,7 +4,7 @@ Flappy Bird
 
 SOON MORE INFO
 ## Birds
-| Key | Action |
+| Bird |
 | ------ |
 | Red |
 | Blue |
