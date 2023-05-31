@@ -3,7 +3,13 @@ Flappy Bird
 
 
 SOON MORE INFO
-
+## Birds
+| Key | Action |
+| ------ |
+| Red |
+| Blue |
+| Yellow |
+| Easy To Add More|
 
 ## KeyBinds
 
