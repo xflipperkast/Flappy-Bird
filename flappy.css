@@ -20,6 +20,7 @@
     width: 31px;
     height: 26px;
     background-image: url(Birds/Blue.png);
+    z-index: 91;
 }
 
 #gameOver{
