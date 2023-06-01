@@ -14,10 +14,25 @@ let lastBird = birds.length;
 let birdY = 200;
 let birdX = 100;
 let obstacleX = 650; // Set initial pipe position outside of the game area
-let score = 0;
 let velocity = 0;
 let isGameStarted = false;
 let isDead = false;
+
+let getScore = (function() {
+    let score = 0; // Encapsulated score
+
+    return {
+        incrementScore: function() {
+            score++;
+        },
+        getScore: function() {
+            return score;
+        },
+        resetScore: function() {
+            score = 0;
+        }
+    };
+})();
 
 // Generate the height for obstacles
 const gapHeight = 150;
@@ -97,21 +112,15 @@ function gameOver() {
         obstacleX = 650;
         velocity = 0;
 
-        if (score >= 100) {
-            goldMedal.style.display = 'block';
-        } else if (score >= 50) {
-            silverMedal.style.display = 'block';
-        } else {
-            bronzeMedal.style.display = 'block';
-        }
+        goldMedal.style.display = (score >= 100) ? 'block' : 'none';
+        silverMedal.style.display = (score >= 50 && score < 100) ? 'block' : 'none';
+        bronzeMedal.style.display = (score < 50) ? 'block' : 'none';
         
-        score = 0;
+        getScore.resetScore();
         medalBox.style.display = 'block';
 
-        
         setTimeout(() => { isDead = false }, 2000);
     }
-
 }
 
 function update() {
@@ -146,18 +155,17 @@ function update() {
         obstacleX = 650; // Reset the pipe position outside of the game area
         obstacleTopHeight = Math.floor(Math.random() * 200) + 50;
         obstacleBottomHeight = 480 - obstacleTopHeight - gapHeight;
-        score++;
+        getScore.incrementScore();
     }
 
     if(birdY > 480 || birdY < 0 || 
       (obstacleX < birdX + 20 && obstacleX + 50 > birdX && 
       (birdY < obstacleTopHeight || birdY + 20 > obstacleTopHeight + gapHeight))) {
-        gameOverTag.innerHTML = "Game Over. Score: " + score + "<br> Click to try again.";
+        gameOverTag.innerHTML = "Game Over. Score: " + getScore.getScore() + "<br> Click to try again.";
         gameOver();
     }
 
-    scoreTag.innerHTML = 'Score: ' + score;
-
+    scoreTag.innerHTML = 'Score: ' + getScore.getScore();
 }
 
 window.addEventListener('click', fly);
@@ -170,3 +178,5 @@ window.addEventListener('keydown', function(e){
 gameOverTag.innerHTML = "Click to start the game";
 bird.style.display = 'none';
 scoreTag.style.display = 'none';
+
+update();
