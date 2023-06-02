@@ -8,6 +8,7 @@ const medalBox = document.getElementById('medalBox');
 const goldMedal = document.getElementById('goldMedal');
 const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
+const pointSound = new Audio('sounds/point.mp3');
 
 const birds = ["Yellow", "Blue", "Red"];
 let lastBird = birds.length;
@@ -23,6 +24,7 @@ let getScore = (function() {
 
     return {
         incrementScore: function() {
+            pointSound.play();
             score++;
         },
         getScore: function() {
