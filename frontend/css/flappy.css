@@ -86,12 +86,3 @@
 #bronzeMedal {
     background-image: url(../images/bronze.png);
 }
-
-
-#cookieTest {
-    display: block;
-    color: black;
-    background-color: aqua;
-    height: 50px;
-    width: 100px;
-}
