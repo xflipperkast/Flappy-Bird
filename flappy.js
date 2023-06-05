@@ -71,9 +71,15 @@ function fly() {
     if (!isGameStarted && !isDead) {
         startGame();
     }
+    // If the flySound is playing, stop it
+    if (!flySound.paused) {
+        flySound.currentTime = flySound.duration;
+    }
+    // Then, start it again
     flySound.play();
     velocity = flyHeight;
 }
+
 
 function startGame() {
     let birdChoice = Math.round(Math.random() * birds.length);
