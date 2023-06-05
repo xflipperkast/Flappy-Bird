@@ -187,7 +187,7 @@ function update() {
       obstacleBottom[i].style.height = obstacleBottomHeight[i] + 'px';
       obstacleBottom[i].style.bottom = 0;
   
-     if (obstacleX[i] < 0 && !obstacleTop[i].passed) {
+     if (obstacleX[i] < 90 && !obstacleTop[i].passed) {
           getScore.incrementScore();
           obstacleTop[i].passed = true; // add a property to mark that this obstacle has been passed
      }
