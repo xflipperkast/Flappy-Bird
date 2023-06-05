@@ -1,16 +1,15 @@
 const bird = document.getElementById('bird');
 const gameBox = document.getElementById('gameBox');
-const obstacleTop = [document.getElementById('obstacleTop0'), document.getElementById('obstacleTop1')];
-const obstacleBottom = [document.getElementById('obstacleBottom0'), document.getElementById('obstacleBottom1')];
+const obstacleTop = document.getElementsByClassName('obstacleTop');
+const obstacleBottom = document.getElementsByClassName('obstacleBottom');
 const scoreTag = document.getElementById('score');
 const gameOverTag = document.getElementById('gameOver');
 const medalBox = document.getElementById('medalBox');
 const goldMedal = document.getElementById('goldMedal');
 const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
-const pointSound = new Audio('sounds/point.mp3');
-const flySound = new Audio('sounds/fly.mp3');
-
+const pointSound = new Audio('./frontend/sounds/point.mp3');
+const flySound = new Audio('./frontend/sounds/fly.mp3');
 
 
 const birds = ["Yellow", "Blue", "Red"];
@@ -20,24 +19,9 @@ let birdX = 100;
 let velocity = 0;
 let isGameStarted = false;
 let isDead = false;
+let scoreIncremented = false;
 
-
-// Generate the height for obstacles
-const gapHeight = 150;
-
-let obstacleX = [650, 1050]; // Initial positions of each obstacle
-
-let obstacleTopHeight = [
-    Math.floor(Math.random() * 200) + 50,
-    Math.floor(Math.random() * 200) + 50,
-  ];
-  
-  let obstacleBottomHeight = [
-    480 - obstacleTopHeight[0] - gapHeight,
-    480 - obstacleTopHeight[1] - gapHeight,
-  ];
-
-let getScore = (function() {
+const scoreData = (function() {
     let score = 0; // Encapsulated score
 
     return {
@@ -54,6 +38,19 @@ let getScore = (function() {
     };
 })();
 
+// Generate the height for obstacles
+const gapHeight = 150;
+let obstacleX = [650, 1000]; // Initial positions of each obstacle
+
+let obstacleTopHeight = [
+    Math.floor(Math.random() * 200) + 50,
+    Math.floor(Math.random() * 200) + 50
+];
+  
+let obstacleBottomHeight = [
+    480 - obstacleTopHeight[0] - gapHeight,
+    480 - obstacleTopHeight[1] - gapHeight
+];
 
 // Fps limiter
 const fps = 60;
@@ -71,15 +68,9 @@ function fly() {
     if (!isGameStarted && !isDead) {
         startGame();
     }
-    // If the flySound is playing, stop it
-    if (!flySound.paused) {
-        flySound.currentTime = flySound.duration;
-    }
-    // Then, start it again
     flySound.play();
     velocity = flyHeight;
 }
-
 
 function startGame() {
     let birdChoice = Math.round(Math.random() * birds.length);
@@ -88,8 +79,7 @@ function startGame() {
         birdChoice = Math.round(Math.random() * birds.length);
     }
 
-    console.log(birdChoice);
-    bird.style.backgroundImage = `url(Birds/${birds[birdChoice]}.png)`;
+    bird.style.backgroundImage = `url(./frontend/images/Birds/${birds[birdChoice]}.png)`;
     lastBird = birdChoice;
 
     birdY = 200;
@@ -141,74 +131,75 @@ function gameOver() {
             obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
         }
 
-        if (getScore.getScore() >= 100) {
+        if (scoreData.getScore() >= 100) {
             goldMedal.style.display = 'block';
-        } else if (getScore.getScore() >= 50) {
+        } else if (scoreData.getScore() >= 50) {
             silverMedal.style.display = 'block';
         } else {
             bronzeMedal.style.display = 'block';
         }
         
-        getScore.resetScore();
+        scoreData.resetScore();
         medalBox.style.display = 'block';
 
+        checkMaxScoreCookie(scoreData.getScore());
         setTimeout(() => { isDead = false }, 2000);
     }
 }
 
-
 function update() {
     if (!isGameStarted) return;
-  
+
     requestAnimationFrame(update);
-  
+
     now = Date.now();
     delta = now - then;
-  
+
     if (delta < interval) return;
-  
+
     then = now - (delta % interval);
-  
+
     birdY += velocity;
     velocity += gravity;
-  
-    for (let i = 0; i < 2; i++) { // Update for each set of obstacles
-      obstacleX[i] -= obstacleVelocity;
-  
-      bird.style.top = birdY + 'px';
-      bird.style.left = birdX + 'px';
-  
-      bird.style.transform = `rotate(${Math.min(velocity * 4, 90)}deg)`;
-  
-      obstacleTop[i].style.left = obstacleX[i] + 'px';
-      obstacleTop[i].style.height = obstacleTopHeight[i] + 'px';
-  
-      obstacleBottom[i].style.left = obstacleX[i] + 'px';
-      obstacleBottom[i].style.height = obstacleBottomHeight[i] + 'px';
-      obstacleBottom[i].style.bottom = 0;
-  
-     if (obstacleX[i] < 90 && !obstacleTop[i].passed) {
-          getScore.incrementScore();
-          obstacleTop[i].passed = true; // add a property to mark that this obstacle has been passed
-     }
 
-     if (obstacleX[i] < -50) {
-         obstacleX[i] = 650;
-         obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
-         obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
-         obstacleTop[i].passed = false; // reset the passed property when we reset the obstacle
-      }
-  
-      if (birdY > 480 || birdY < 0 || 
-         (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 
-         (birdY < obstacleTopHeight[i] || birdY + 20 > obstacleTopHeight[i] + gapHeight))) {
-           gameOverTag.innerHTML = "Game Over. Score: " + getScore.getScore() + "<br> Click to try again.";
-           gameOver();
-      }
+    for (let i = 0; i < 2; i++) { // Update for each set of obstacles
+        obstacleX[i] -= obstacleVelocity;
+    
+        bird.style.top = birdY + 'px';
+        bird.style.left = birdX + 'px';
+    
+        bird.style.transform = `rotate(${Math.min(velocity * 4, 90)}deg)`;
+    
+        obstacleTop[i].style.left = obstacleX[i] + 'px';
+        obstacleTop[i].style.height = obstacleTopHeight[i] + 'px';
+    
+        obstacleBottom[i].style.left = obstacleX[i] + 'px';
+        obstacleBottom[i].style.height = obstacleBottomHeight[i] + 'px';
+        obstacleBottom[i].style.bottom = 0;
+
+        if (obstacleX[i] < 75 && !scoreIncremented) {
+            scoreIncremented = true;
+            scoreData.incrementScore();
+        }
+
+        if(obstacleX[i] < -50) {
+            obstacleX[i] = 650;
+            obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
+            obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
+            scoreIncremented = false;
+        }
+
+        if (birdY > 480 || birdY < 0 || 
+          (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 
+          (birdY < obstacleTopHeight[i] || birdY + 20 > obstacleTopHeight[i] + gapHeight))) {
+            gameOverTag.innerHTML = "Game Over. Score: " + scoreData.getScore() + "<br> Click to try again.";
+            gameOver();
+        }
+
     }
-  
-    scoreTag.innerHTML = 'Score: ' + getScore.getScore();
-  }
+
+    scoreTag.innerHTML = 'Score: ' + scoreData.getScore();
+}
 
 window.addEventListener('click', fly);
 window.addEventListener('touchstart', fly);
@@ -222,6 +213,3 @@ bird.style.display = 'none';
 scoreTag.style.display = 'none';
 
 update();
-console.log("Made By xFlippy");
-console.log("Hhttps://github.com/xflipperkast");
-console.log("https://github.com/xflipperkast/Flappy-Bird");
