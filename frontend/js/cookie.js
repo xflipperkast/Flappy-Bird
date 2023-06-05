@@ -1,7 +1,8 @@
-function getCookie(cookieName = "maxScore") {
-    let name = cookieName + "=";
+function getMaxScoreFromCookie() {
+    let name = "maxScore=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
+
     for(let i = 0; i <ca.length; i++) {
         let c = ca[i];
 
@@ -18,24 +19,26 @@ function getCookie(cookieName = "maxScore") {
     return "";
 }
 
-function setCookie(cookieName = "maxScore", cookieValue = 0) {
+// DO NOT USE! USE `checkCookie()` INSTEAD
+function setMaxScoreCookie(cookieValue = 0) {
     const d = new Date();
-    d.setTime(d.getTime() + (100000000000*24*60*60*1000));
-
+    d.setTime(d.getTime() + (365*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();
 
-    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+    let cookie = "maxScore=" + cookieValue + ";" + expires.slice(0, -3) + "UTC;";
+    document.cookie = cookie;
 }
 
-function checkCookie(cookieName = "maxScore", cookieValue = 0) {
-    let cookie = getCookie(cookieName);
+// This checks if a cookie for max score needs to be set
+function checkMaxScoreCookie(cookieValue = 0) {
+    let cookie = getMaxScoreFromCookie();
 
-    if (cookie == "" || cookie == null) {
-        setCookie(cookieName, cookieValue)
+    if (cookie == "" || Number(cookie) > cookieValue) {
+        setMaxScoreCookie(cookieValue)
     }
 
 }
 
-function deleteCookie(cookieName = "maxScore") {
-    document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+function deleteMaxScoreCookie() {
+    document.cookie = "maxScore=;expires=Thu, 01 Jan 1970 00:00:00 UTC";
 }

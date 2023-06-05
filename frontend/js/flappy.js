@@ -1,7 +1,7 @@
 const bird = document.getElementById('bird');
 const gameBox = document.getElementById('gameBox');
-const obstacleTop = document.getElementById('obstacleTop');
-const obstacleBottom = document.getElementById('obstacleBottom');
+const obstacleTop = document.getElementsByClassName('obstacleTop');
+const obstacleBottom = document.getElementsByClassName('obstacleBottom');
 const scoreTag = document.getElementById('score');
 const gameOverTag = document.getElementById('gameOver');
 const medalBox = document.getElementById('medalBox');
@@ -16,12 +16,12 @@ const birds = ["Yellow", "Blue", "Red"];
 let lastBird = birds.length;
 let birdY = 200;
 let birdX = 100;
-let obstacleX = 650; // Set initial pipe position outside of the game area.
 let velocity = 0;
 let isGameStarted = false;
 let isDead = false;
+let scoreIncremented = false;
 
-let getScore = (function() {
+const scoreData = (function() {
     let score = 0; // Encapsulated score
 
     return {
@@ -40,8 +40,17 @@ let getScore = (function() {
 
 // Generate the height for obstacles
 const gapHeight = 150;
-let obstacleTopHeight = Math.floor(Math.random() * 200) + 50;
-let obstacleBottomHeight = 480 - obstacleTopHeight - gapHeight;
+let obstacleX = [650, 1000]; // Initial positions of each obstacle
+
+let obstacleTopHeight = [
+    Math.floor(Math.random() * 200) + 50,
+    Math.floor(Math.random() * 200) + 50
+];
+  
+let obstacleBottomHeight = [
+    480 - obstacleTopHeight[0] - gapHeight,
+    480 - obstacleTopHeight[1] - gapHeight
+];
 
 // Fps limiter
 const fps = 60;
@@ -52,7 +61,7 @@ let delta;
 
 // Speed decider
 const flyHeight = -8;
-const obstacleVelocity = 10;
+const obstacleVelocity = 8;
 const gravity = 0.4;
 
 function fly() {
@@ -113,20 +122,27 @@ function gameOver() {
         gameOverTag.style.display = 'block';
         scoreTag.style.display = 'block';
         birdY = 200;
-        obstacleX = 650;
         velocity = 0;
 
-        if (getScore.getScore() >= 100) {
+        // Reset obstacle positions and heights
+        for(let i = 0; i < obstacleX.length; i++) {
+            obstacleX[i] = 650 + (400 * i);
+            obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
+            obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
+        }
+
+        if (scoreData.getScore() >= 100) {
             goldMedal.style.display = 'block';
-        } else if (getScore.getScore() >= 50) {
+        } else if (scoreData.getScore() >= 50) {
             silverMedal.style.display = 'block';
         } else {
             bronzeMedal.style.display = 'block';
         }
         
-        getScore.resetScore();
+        scoreData.resetScore();
         medalBox.style.display = 'block';
 
+        checkMaxScoreCookie(scoreData.getScore());
         setTimeout(() => { isDead = false }, 2000);
     }
 }
@@ -145,35 +161,44 @@ function update() {
 
     birdY += velocity;
     velocity += gravity;
-    obstacleX -= obstacleVelocity; // This makes the pipe move from right to left
 
-    bird.style.top = birdY + 'px';
-    bird.style.left = birdX + 'px';
+    for (let i = 0; i < 2; i++) { // Update for each set of obstacles
+        obstacleX[i] -= obstacleVelocity;
+    
+        bird.style.top = birdY + 'px';
+        bird.style.left = birdX + 'px';
+    
+        bird.style.transform = `rotate(${Math.min(velocity * 4, 90)}deg)`;
+    
+        obstacleTop[i].style.left = obstacleX[i] + 'px';
+        obstacleTop[i].style.height = obstacleTopHeight[i] + 'px';
+    
+        obstacleBottom[i].style.left = obstacleX[i] + 'px';
+        obstacleBottom[i].style.height = obstacleBottomHeight[i] + 'px';
+        obstacleBottom[i].style.bottom = 0;
 
-    bird.style.transform = `rotate(${Math.min(velocity * 4, 90)}deg)`;
+        if (obstacleX[i] < 75 && !scoreIncremented) {
+            scoreIncremented = true;
+            scoreData.incrementScore();
+        }
 
-    obstacleTop.style.left = obstacleX + 'px';
-    obstacleTop.style.height = obstacleTopHeight + 'px';
+        if(obstacleX[i] < -50) {
+            obstacleX[i] = 650;
+            obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
+            obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
+            scoreIncremented = false;
+        }
 
-    obstacleBottom.style.left = obstacleX + 'px';
-    obstacleBottom.style.height = obstacleBottomHeight + 'px';
-    obstacleBottom.style.bottom = 0;
+        if (birdY > 480 || birdY < 0 || 
+          (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 
+          (birdY < obstacleTopHeight[i] || birdY + 20 > obstacleTopHeight[i] + gapHeight))) {
+            gameOverTag.innerHTML = "Game Over. Score: " + scoreData.getScore() + "<br> Click to try again.";
+            gameOver();
+        }
 
-    if(obstacleX < -50) {
-        obstacleX = 650; // Reset the pipe position outside of the game area
-        obstacleTopHeight = Math.floor(Math.random() * 200) + 50;
-        obstacleBottomHeight = 480 - obstacleTopHeight - gapHeight;
-        getScore.incrementScore();
     }
 
-    if(birdY > 480 || birdY < 0 || 
-      (obstacleX < birdX + 20 && obstacleX + 50 > birdX && 
-      (birdY < obstacleTopHeight || birdY + 20 > obstacleTopHeight + gapHeight))) {
-        gameOverTag.innerHTML = "Game Over. Score: " + getScore.getScore() + "<br> Click to try again.";
-        gameOver();
-    }
-
-    scoreTag.innerHTML = 'Score: ' + getScore.getScore();
+    scoreTag.innerHTML = 'Score: ' + scoreData.getScore();
 }
 
 window.addEventListener('click', fly);

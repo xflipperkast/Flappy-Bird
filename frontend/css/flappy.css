@@ -30,19 +30,19 @@
     font-size: 18px;
 }
 
-#obstacleTop, #obstacleBottom {
+.obstacleTop, .obstacleBottom {
     position: absolute;
     background: #00000000;
     background-size: 50px 275px;
     width: 50px;
 }
 
-#obstacleTop {
+.obstacleTop {
     background-image: url(../images/Pipes/top.png);
     transform: rotate(180deg);
 }
 
-#obstacleBottom {
+.obstacleBottom {
     background-image: url(../images/Pipes/bottom.png);
 }
 
@@ -85,4 +85,13 @@
 
 #bronzeMedal {
     background-image: url(../images/bronze.png);
+}
+
+
+#cookieTest {
+    display: block;
+    color: black;
+    background-color: aqua;
+    height: 50px;
+    width: 100px;
 }
