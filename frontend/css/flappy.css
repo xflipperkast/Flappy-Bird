@@ -33,7 +33,7 @@
 .obstacleTop, .obstacleBottom {
     position: absolute;
     background: #00000000;
-    background-size: 50px 275px;
+    background-size: 50px 290px;
     width: 50px;
 }
 
