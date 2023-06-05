@@ -211,3 +211,6 @@ bird.style.display = 'none';
 scoreTag.style.display = 'none';
 
 update();
+console.log("Made By xFlippy");
+console.log("Hhttps://github.com/xflipperkast");
+console.log("https://github.com/xflipperkast/Flappy-Bird");
