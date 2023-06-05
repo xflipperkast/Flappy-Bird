@@ -9,6 +9,8 @@ const goldMedal = document.getElementById('goldMedal');
 const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
 const pointSound = new Audio('sounds/point.mp3');
+const flySound = new Audio('sounds/fly.mp3');
+
 
 const birds = ["Yellow", "Blue", "Red"];
 let lastBird = birds.length;
@@ -57,6 +59,7 @@ function fly() {
     if (!isGameStarted && !isDead) {
         startGame();
     }
+    flySound.play();
     velocity = flyHeight;
 }
 
