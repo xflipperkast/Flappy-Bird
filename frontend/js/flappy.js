@@ -10,7 +10,7 @@ const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
 const pointSound = new Audio('./frontend/sounds/point.mp3');
 const flySound = new Audio('./frontend/sounds/fly.mp3');
-
+const coins = document.getElementsByClassName('coin');
 
 const birds = ["Yellow", "Blue", "Red"];
 let lastBird = birds.length;
@@ -20,6 +20,8 @@ let velocity = 0;
 let isGameStarted = false;
 let isDead = false;
 let scoreIncremented = false;
+let coinCollected = false;
+let collectedCoin = 0;
 
 const scoreData = (function() {
     let score = 0; // Encapsulated score
@@ -52,6 +54,13 @@ let obstacleBottomHeight = [
     480 - obstacleTopHeight[1] - gapHeight
 ];
 
+// Data for coins
+let coinY = [
+    obstacleTopHeight[0] + gapHeight / 2 - 20,
+    obstacleTopHeight[1] + gapHeight / 2 - 20
+];
+let coinX = [655, 1005]; // Initial positions of each coin
+
 // Fps limiter
 const fps = 60;
 let now;
@@ -68,6 +77,11 @@ function fly() {
     if (!isGameStarted && !isDead) {
         startGame();
     }
+    // If the flySound is playing, stop it
+    if (!flySound.paused) {
+        flySound.currentTime = flySound.duration;
+    }
+    // Then, start it again
     flySound.play();
     velocity = flyHeight;
 }
@@ -164,6 +178,7 @@ function update() {
 
     for (let i = 0; i < 2; i++) { // Update for each set of obstacles
         obstacleX[i] -= obstacleVelocity;
+        coinX[i] -= obstacleVelocity;
     
         bird.style.top = birdY + 'px';
         bird.style.left = birdX + 'px';
@@ -172,6 +187,8 @@ function update() {
     
         obstacleTop[i].style.left = obstacleX[i] + 'px';
         obstacleTop[i].style.height = obstacleTopHeight[i] + 'px';
+
+        coins[i].style.left = coinX[i] + 'px';
     
         obstacleBottom[i].style.left = obstacleX[i] + 'px';
         obstacleBottom[i].style.height = obstacleBottomHeight[i] + 'px';
@@ -180,14 +197,25 @@ function update() {
         if (obstacleX[i] < 75 && !scoreIncremented) {
             scoreIncremented = true;
             scoreData.incrementScore();
+            coinCollected = true;
+            collectedCoin = i;
         }
 
         if(obstacleX[i] < -50) {
             obstacleX[i] = 650;
+            coinX[i] = 655;
             obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
             obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
+            coinY[i] = obstacleTopHeight[i] + gapHeight / 2 - 20;
             scoreIncremented = false;
+            coinCollected = false;
         }
+
+        if (coinCollected) {
+            coinY[collectedCoin] += 3; 
+        }
+
+        coins[i].style.top = coinY[i] + 'px';
 
         if (birdY > 480 || birdY < 0 || 
           (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 

@@ -35,6 +35,7 @@
     background: #00000000;
     background-size: 50px 290px;
     width: 50px;
+    z-index: 10;
 }
 
 .obstacleTop {
@@ -76,13 +77,23 @@
 }
 
 #goldMedal {
-    background-image: url(../images/gold.png);
+    background-image: url(../images/medals/gold.png);
 }
 
 #silverMedal {
-    background-image: url(../images/silver.png);
+    background-image: url(../images/medals/silver.png);
 }
 
 #bronzeMedal {
-    background-image: url(../images/bronze.png);
+    background-image: url(../images/medals/bronze.png);
+}
+
+.coin {
+    position: absolute;
+    background-image: url(../images/coin.gif);
+    height: 40px;
+    width: 40px;
+    background-size: 80px 80px;
+    background-position: center center;
+    z-index: 5;
 }
