@@ -187,7 +187,7 @@ function update() {
       obstacleBottom[i].style.height = obstacleBottomHeight[i] + 'px';
       obstacleBottom[i].style.bottom = 0;
   
-      if (obstacleX[i] < -50) {
+      if (obstacleX[i] < -20) {
         obstacleX[i] = 650;
         obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
         obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
