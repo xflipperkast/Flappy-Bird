@@ -42,3 +42,4 @@ function checkMaxScoreCookie(cookieValue = 0) {
 function deleteMaxScoreCookie() {
     document.cookie = "maxScore=;expires=Thu, 01 Jan 1970 00:00:00 UTC";
 }
+checkMaxScoreCookie(0)
