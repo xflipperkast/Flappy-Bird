@@ -33,7 +33,7 @@ function setMaxScoreCookie(cookieValue = 0) {
 function checkMaxScoreCookie(cookieValue = 0) {
     let cookie = getMaxScoreFromCookie();
 
-    if (cookie == "" || Number(cookie) > cookieValue) {
+    if (cookie == "" || Number(cookie) < cookieValue) {
         setMaxScoreCookie(cookieValue)
     }
 
