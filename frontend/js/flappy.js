@@ -156,11 +156,9 @@ function gameOver() {
         } else {
             bronzeMedal.style.display = 'block';
         }
-        
+        checkMaxScoreCookie(scoreData.getScore());
         scoreData.resetScore();
         medalBox.style.display = 'block';
-
-        checkMaxScoreCookie(scoreData.getScore());
         setTimeout(() => { isDead = false }, 2000);
     }
 }
