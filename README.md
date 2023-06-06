@@ -29,3 +29,6 @@ SOON MORE INFO
 | 0- 49 | Bonze |
 | 50-99 | Silver |
 | 100+ | Gold |
+
+## Cookie?
+Yes We have added a cookie.js to collect the personal best score and soon more cool stuff like coins and shop items
