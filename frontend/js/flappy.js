@@ -144,7 +144,11 @@ function gameOver() {
             obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
             obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
         }
-
+        // Reset coin positions and heights
+        for(let i = 0; i < coinY.length; i++) {
+            coinY[i] = obstacleTopHeight[i] + gapHeight / 2 - 20;
+            coinX[i] = 655 + (400 * i);
+        }
         if (scoreData.getScore() >= 100) {
             goldMedal.style.display = 'block';
         } else if (scoreData.getScore() >= 50) {
