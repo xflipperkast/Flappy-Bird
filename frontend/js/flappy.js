@@ -12,7 +12,11 @@ const pointSound = new Audio('./frontend/sounds/point.mp3');
 const flySound = new Audio('./frontend/sounds/fly.mp3');
 const coins = document.getElementsByClassName('coin');
 
-const birds = ["Yellow", "Blue", "Red"];
+for (let i = 0; i < coins.length; i++) {
+    coins[i].style.display = "none";
+}
+
+const birds = getColors();
 let lastBird = birds.length;
 let birdY = 200;
 let birdX = 100;
@@ -86,7 +90,12 @@ function fly() {
     velocity = flyHeight;
 }
 
-function startGame() {
+function getBirdColor() {
+    if (birds.length == 1 || birds.length == 0) {
+        bird.style.backgroundImage = `url(./frontend/images/Birds/Yellow.png)`;
+        return;
+    }
+
     let birdChoice = Math.round(Math.random() * birds.length);
     
     while (birdChoice === lastBird || birdChoice === birds.length) {
@@ -95,6 +104,10 @@ function startGame() {
 
     bird.style.backgroundImage = `url(./frontend/images/Birds/${birds[birdChoice]}.png)`;
     lastBird = birdChoice;
+}
+
+function startGame() {
+    getBirdColor();
 
     birdY = 200;
     birdX = 100;
@@ -109,6 +122,10 @@ function startGame() {
     bronzeMedal.style.display = 'none';
 
     gameOverTag.style.position = 'absolute';
+
+    for (let i = 0; i < coins.length; i++) {
+        coins[i].style.display = "block";
+    }
 
     update()
 }
