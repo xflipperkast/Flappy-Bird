@@ -16,7 +16,7 @@ const getCookieData = (cookieName = "") => {
         }
 
         if (cookie.indexOf(name) == 0) {
-            return cookie.substring(name.length, c.length);
+            return cookie.substring(name.length, cookie.length);
         }
 
     }
