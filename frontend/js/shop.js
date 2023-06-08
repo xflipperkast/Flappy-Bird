@@ -10,6 +10,7 @@ function buyColor(price = 0, color = "") {
 
     if (!response[0]) {
         errorContainer.innerHTML = response[1];
+        return;
     }
 
     const colors = getColors();
