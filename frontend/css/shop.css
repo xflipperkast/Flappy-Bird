@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+#errorContainer {
+    color: #DD2222FF;
+}
+
+#succesContainer {
+    color: #22BB22FF;
+}
+
+.coinImage {
+    position: relative;
+    background-image: url(../images/coin.gif);
+    height: 25px;
+    width: 25px;
+    background-size: 50px 50px;
+    background-position: center center;
+}
+
+.priceContainer {
+    display: flex;
+    align-items: center;
+}
