@@ -14,6 +14,7 @@ function buyColor(price = 0, color = "") {
     }
 
     const colors = getColors();
+    
     if (colors.includes(color)) {
         errorContainer.innerHTML = "Color is already bought!";
         spendCoins(-price);
