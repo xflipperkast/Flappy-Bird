@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+#coins {
+    text-align: center;
+    display: block;
+    margin: 50px;
+    font-size: 30px;
+}
+
 #errorContainer {
     color: #DD2222FF;
 }
@@ -7,6 +14,26 @@
 #succesContainer {
     color: #22BB22FF;
 }
+
+#shopBox {
+    text-align: center;
+}
+
+#birdsShowcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    margin: auto;
+    max-width: 1200px;
+}
+
+#cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .coinImage {
     position: relative;
@@ -21,3 +48,13 @@
     display: flex;
     align-items: center;
 }
+
+.priceContainer .red {
+    color: red;
+}
+
+.priceContainer .blue {
+    color: blue;
+}
+
+
