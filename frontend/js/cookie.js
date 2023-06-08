@@ -135,3 +135,13 @@ checkMaxScoreCookie(0);
 checkColors("Yellow");
 
 const getColors = () => { return toArray(getCookieData("colors")); }
+
+/*
+    This removed the cookies from the `/Flappy-Bird` location
+*/
+
+const cookies = ["colors", "maxScore", "coinAmount"];
+    
+cookies.forEach((cookieName) => {
+    document.cookie =     document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/Flappy-Bird";
+});
