@@ -9,6 +9,13 @@ function buyColor(price = 0, color = "") {
     succesContainer.innerHTML = "";
 
     if (response[0]) {
+        const colors = getColors();
+        if (colors.includes("color")) {
+            errorContainer.innerHTML = "Color is already bought!";
+            spendCoins(-price);
+            return;
+        }
+
         succesContainer.innerHTML = response[1];
         checkColors(color);
         return;
