@@ -59,8 +59,6 @@ function checkMaxScoreCookie(cookieValue = 0) {
 
 }
 
-checkMaxScoreCookie(0)
-
 /* 
     Cookies for the coins
 */
@@ -133,6 +131,7 @@ function checkColors(cookieValue = "Yellow") {
     console.log("set new colors cookie", valueForCookie);
 }
 
+checkMaxScoreCookie(0);
 checkColors("Yellow");
 
 const getColors = () => { return toArray(getCookieData("colors")); }
