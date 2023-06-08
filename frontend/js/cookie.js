@@ -30,13 +30,13 @@ function setCookie(cookieValue, cookieName = "", daysUntillExpire = 1000) {
     date.setTime(date.getTime() + (daysUntillExpire*24*60*60*1000));
     const expires = "expires="+ date.toUTCString();
 
-    const cookie = cookieName + "=" + cookieValue + ";" + expires.slice(0, -3) + "UTC;";
+    const cookie = cookieName + "=" + cookieValue + ";" + expires.slice(0, -3) + "UTC;path=/";
     document.cookie = cookie;
 }
 
 // This still needs to be used somewhere but for now it is unused code
 function deleteCookie(cookieName = "") {
-    document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
 }
 
 /*
