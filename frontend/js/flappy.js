@@ -161,11 +161,13 @@ function gameOver() {
             obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
             obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
         }
+
         // Reset coin positions and heights
         for(let i = 0; i < coinY.length; i++) {
             coinY[i] = obstacleTopHeight[i] + gapHeight / 2 - 20;
             coinX[i] = 655 + (400 * i);
         }
+
         if (scoreData.getScore() >= 100) {
             goldMedal.style.display = 'block';
         } else if (scoreData.getScore() >= 50) {
@@ -173,6 +175,7 @@ function gameOver() {
         } else {
             bronzeMedal.style.display = 'block';
         }
+
         checkMaxScoreCookie(scoreData.getScore());
         scoreData.resetScore();
         medalBox.style.display = 'block';
@@ -220,7 +223,7 @@ function update() {
             collectedCoin = i;
         }
 
-        if(obstacleX[i] < -50) {
+        if (obstacleX[i] < -50) {
             obstacleX[i] = 650;
             coinX[i] = 655;
             obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
@@ -251,7 +254,7 @@ function update() {
 window.addEventListener('click', fly);
 window.addEventListener('touchstart', fly);
 window.addEventListener('keydown', function(e){
-    if(e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') fly();
+    if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') fly();
 });
 
 // Initially, hide bird and score, show game over message

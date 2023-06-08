@@ -3,7 +3,6 @@
 */
 
 const getCookieData = (cookieName = "") => {
-    if (!cookieName) return "";
     const name = cookieName + "=";
     const decodedCookie = decodeURIComponent(document.cookie);
     const cookieArray = decodedCookie.split(';');
@@ -27,8 +26,6 @@ const getCookieData = (cookieName = "") => {
 // Never call this function outside of normal checks
 // Please write checks for cookies if you wanna use this, you could overwrite stuff you dont want
 function setCookie(cookieValue, cookieName = "", daysUntillExpire = 1000) {
-    if (cookieName || cookieValue || daysUntillExpire) return;
-
     const date = new Date();
     date.setTime(date.getTime() + (daysUntillExpire*24*60*60*1000));
     const expires = "expires="+ date.toUTCString();
@@ -50,9 +47,15 @@ function deleteCookie(cookieName = "") {
 function checkMaxScoreCookie(cookieValue = 0) {
     let cookie = getCookieData("maxScore");
 
+    checkCoins(cookieValue);
+
     if (cookie == "" || Number(cookie) < cookieValue) {
         setCookie(cookieValue, "maxScore");
+        console.log("set new max score", cookieValue, "Was:", cookie);
+        return;
     }
+
+    console.log("Did not update score", cookieValue, "Was:", cookie);
 
 }
 
@@ -68,15 +71,15 @@ function checkCoins(cookieValue = 0) {
 
     if (cookie == "") {
         setCookie(cookieValue, cookieName);
+        console.log("Set initial cookie for coins:", cookieValue);
         return;
     }
 
     cookieValue += Number(cookie);
 
     setCookie(cookieValue, cookieName);
+    console.log("Updated cookie for coins:", cookieValue, "Was:", cookie);
 }
-
-checkCoins(0);
 
 // This returns an array of a boolean if it has worked and a string of why it has failed or that is has passed
 const spendCoins = (cookieValue = 0) => {
@@ -92,14 +95,12 @@ const spendCoins = (cookieValue = 0) => {
     return [true, "Coins spend and saved!"];
 }
 
-/*
+/*  
     Cookies for shop
 */
 
-function toArray(value = "") {
-    let convertedString = value.slice(1);
-    convertedString = convertedString.slice(0, -1);
-    const returnedValue = convertedString.split(",");
+const toArray = (string = "") => {
+    const returnedValue = string.split(",");
     return returnedValue;
 }
 
@@ -109,7 +110,9 @@ function checkColors(cookieValue = "Yellow") {
     const cookie = getCookieData(cookieName);
 
     if (cookie == "") {
-        setCookie("[" + cookieValue + "]", cookieName);
+        setCookie(cookieValue, cookieName);
+        console.log("set initial colors:", cookieValue)
+        return;
     }
 
     let array = toArray(cookie);
@@ -119,9 +122,14 @@ function checkColors(cookieValue = "Yellow") {
     }
 
     array.push(cookieValue);
-    const valueForCookie = "[" + array.toString() + "]";
+    let valueForCookie = array.toString();
+
+    if (valueForCookie.substring(0, 1) === ",") {
+        valueForCookie = valueForCookie.slice(1)
+    }
 
     setCookie(valueForCookie, cookieName);
+    console.log("set new colors cookie", valueForCookie);
 }
 
 checkColors("Yellow");
