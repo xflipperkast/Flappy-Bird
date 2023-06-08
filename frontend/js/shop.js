@@ -8,20 +8,19 @@ function buyColor(price = 0, color = "") {
     errorContainer.innerHTML = "";
     succesContainer.innerHTML = "";
 
-    if (response[0]) {
-        const colors = getColors();
-        if (colors.includes("color")) {
-            errorContainer.innerHTML = "Color is already bought!";
-            spendCoins(-price);
-            return;
-        }
+    if (!response[0]) {
+        errorContainer.innerHTML = response[1];
+    }
 
-        succesContainer.innerHTML = response[1];
-        checkColors(color);
+    const colors = getColors();
+    if (colors.includes("color")) {
+        errorContainer.innerHTML = "Color is already bought!";
+        spendCoins(-price);
         return;
     }
 
-    errorContainer.innerHTML = response[1];
+    succesContainer.innerHTML = response[1];
+    checkColors(color);
 }
 
 redButton.addEventListener('click', function() {buyColor(200, "Red")});
