@@ -118,7 +118,7 @@ function checkColors(cookieValue = "Yellow") {
     let array = toArray(cookie);
 
     if (array.includes(cookieValue)) {
-        console.log("Value already in cookie");
+        console.log("Color already in cookie");
         return;
     }
 
