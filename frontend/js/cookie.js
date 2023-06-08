@@ -96,7 +96,7 @@ const spendCoins = (cookieValue = 0) => {
     if (cookie == "") return [false, "Cookie not set! Fix this cause it auto sets it!"];
 
     const newValue = Number(cookie) - cookieValue;
-    //if (newValue < 0) return [false, "Not enough coins!"];
+    if (newValue < 0) return [false, "Not enough coins!"];
 
     setCookie(newValue, cookieName);
     return [true, "Coins spend and saved!"];
