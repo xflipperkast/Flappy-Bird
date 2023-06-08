@@ -3,30 +3,20 @@ const blueButton = document.getElementById("buyBlue");
 const errorContainer = document.getElementById("errorContainer");
 const succesContainer = document.getElementById("succesContainer");
 
-redButton.addEventListener('click', function() {
-    const response = spendCoins(200);
+function buyColor(price = 0, color = "") {
+    const response = spendCoins(price);
     errorContainer.innerHTML = "";
     succesContainer.innerHTML = "";
 
     if (response[0]) {
         succesContainer.innerHTML = response[1];
-        checkColors("Red");
+        checkColors(color);
         return;
     }
 
     errorContainer.innerHTML = response[1];
-});
+}
 
-blueButton.addEventListener('click', function() {
-    const response = spendCoins(200);
-    errorContainer.innerHTML = "";
-    succesContainer.innerHTML = "";
+redButton.addEventListener('click', function() {buyColor(200, "Red")});
 
-    if (response[0]) {
-        succesContainer.innerHTML = response[1];
-        checkColors("Blue");
-        return;
-    }
-
-    errorContainer.innerHTML = response[1];
-});
+blueButton.addEventListener('click', function() {buyColor(200, "Blue")});
