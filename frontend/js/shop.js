@@ -25,5 +25,4 @@ function buyColor(price = 0, color = "") {
 }
 
 redButton.addEventListener('click', function() {buyColor(200, "Red")});
-
 blueButton.addEventListener('click', function() {buyColor(200, "Blue")});
