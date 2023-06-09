@@ -68,7 +68,7 @@ function buyColor(price = 0, color = "") {
 
     birdColors.forEach(function(colorName) {
         const container = document.getElementById(colorName);
-        const textContainer = container.firstChild();
+        const textContainer = container.firstElementChild;
 
         textContainer.setAttribute('class', (!includesColor) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue');
     });
