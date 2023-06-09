@@ -1,29 +1,27 @@
 const messageContainer = document.getElementById('messageContainer');
 
-// It is hardecoded, i dint find a workarroud to get all birds colors
 const birdColors = [
     'Blue',
-    'Groen',
-    'Oranje',
-    'Porpel',
+    'Green',
+    'Orange',
+    'Purple',
     'Red',
-    'Roze',
-    'Yellow',
-]
+    'Pink'
+];
 
 function makeShopCell(birdColor = 'Red') {
+    if (getColors().includes(birdColor)) return;
     const birdsShowCase = document.getElementById('birdsShowcase');
     const cell = document.createElement('div');
     
-    // Consider making a funciton to make it more expensive
-    const birdColorPrice = 20;
+    const birdColorPrice = 200;
 
     cell.setAttribute('id', 'cell');
     cell.innerHTML += `
         <img src="./frontend/images/Birds/${birdColor}.png" alt="${birdColor} bird" />
-        <h3>${birdColor}</h2>
+        <h3>${birdColor} Bird</h3>
         <div id="buy-${birdColor}">
-        <button id="buy${birdColor}" class="buy-button"
+            <button id="buy${birdColor}" class="buy-button"
                 data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
         </div>
         <div class="priceContainer">
@@ -33,15 +31,8 @@ function makeShopCell(birdColor = 'Red') {
             <div class="coinImage"></div>
         </div>
     `;
-    birdsShowCase.appendChild(cell)
 
-    if (getColors().includes(birdColor)) 
-        showBoughtMessage(birdColor);
-}
-
-function showBoughtMessage(birdColor) {
-        document.getElementById(`buy-${birdColor}`).innerHTML =  
-            `<p id="succesContainer">Color is already bought!</p>`
+    birdsShowCase.appendChild(cell);
 }
 
 birdColors.forEach(function(color) {
@@ -49,24 +40,21 @@ birdColors.forEach(function(color) {
 })
 
 
-function updateMesageContainer(response) {
+function updateMesageContainer(response = [false, "Default value"]) {
     messageContainer.innerHTML = response[1];
-    messageContainer.setAttribute('id', response[0] ? 'succesContainer' : 'errorContainer')
+    messageContainer.setAttribute('class', response[0] ? 'succesContainer' : 'errorContainer');
 }
 
 function buyColor(price = 0, color = "") {
     const response = spendCoins(price);
-    updateMesageContainer(response)
+    updateMesageContainer(response);
 
-    if (!response[0]) 
-       return;
-    
+    if (!response[0]) return;
+
     checkColors(color);
-    showBoughtMessage(color);
     setPlayerCoins();
 }
 
-// Get all butons in a cell of the shop with the class "buy-button"
 const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
 
 buttons.forEach(button => {
@@ -74,15 +62,12 @@ buttons.forEach(button => {
         const color = button.getAttribute('data-color');
         const price = Number(button.getAttribute('data-price'));
         buyColor(price, color);
-    })
+    });
 })
 
-// Just for show the player coins 
 function setPlayerCoins() {
-  const coinsContainer = document.getElementById('coins');
-  coinsContainer.innerHTML =  `
-      ${getCookieData('coinAmount')} Coins
-  `
+    const coinsContainer = document.getElementById('coins');
+    coinsContainer.innerHTML = `You have ${getCookieData('coinAmount') || 0}<div id="coinCounterImage"></div>`;
 }
 
 setPlayerCoins();

@@ -1,17 +1,26 @@
 @charset "utf-8";
 
 #coins {
-    text-align: center;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 50px;
     font-size: 30px;
 }
 
-#errorContainer {
+#coinCounterImage {
+    background-image: url(../images/coin.gif);
+    height: 35px;
+    width: 35px;
+    background-size: 70px;
+    background-position: center;
+}
+
+.errorContainer {
     color: #DD2222FF;
 }
 
-#succesContainer {
+.succesContainer {
     color: #22BB22FF;
 }
 
@@ -36,7 +45,6 @@
 
 
 .coinImage {
-    position: relative;
     background-image: url(../images/coin.gif);
     height: 25px;
     width: 25px;
@@ -50,11 +58,13 @@
 }
 
 .priceContainer .red {
-    color: red;
+    color: #DD2222FF;
 }
 
 .priceContainer .blue {
     color: blue;
 }
 
-
+h1 {
+    text-align: center;
+}
