@@ -56,6 +56,8 @@ function updateMesageContainer(response = [false, "Default value"]) {
 }
 
 function buyColor(price = 0, color = "") {
+    if (getColors().includes(color)) return;
+
     const response = spendCoins(price);
     updateMesageContainer(response);
 
