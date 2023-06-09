@@ -70,7 +70,7 @@ function buyColor(price = 0, color = "") {
         const container = document.getElementById(colorName);
         const textContainer = container.firstElementChild;
 
-        textContainer.setAttribute('class', (!includesColor) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue');
+        textContainer.setAttribute('class', (!getColors().includes(colorName)) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue');
     });
 }
 
