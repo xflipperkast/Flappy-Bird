@@ -9,12 +9,12 @@ const birdColors = [
     'Pink'
 ];
 
+const birdColorPrice = 200;
+
 function makeShopCell(birdColor = 'Red') {
     const includesColor = getColors().includes(birdColor);
     const birdsShowCase = document.getElementById('birdsShowcase');
     const cell = document.createElement('div');
-    
-    const birdColorPrice = 200;
 
     let name = `${birdColor} Bird`;
 
