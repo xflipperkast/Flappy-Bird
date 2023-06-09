@@ -19,7 +19,7 @@ function makeShopCell(birdColor = 'Red') {
     let name = `${birdColor} Bird`;
 
     if (includesColor) {
-        name += "(bought)";
+        name += " (bought)";
     }
 
     cell.setAttribute('class', 'cell');
