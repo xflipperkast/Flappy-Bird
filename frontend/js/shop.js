@@ -30,7 +30,7 @@ function makeShopCell(birdColor = 'Red') {
             <button id="buy${birdColor}" class="buy-button"
                 data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
         </div>
-        <div class="priceContainer">
+        <div class="priceContainer" id="${birdColor}">
             <p class='${(!includesColor) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue'}'>
                 Price: ${birdColorPrice}
             </p>
@@ -65,11 +65,18 @@ function buyColor(price = 0, color = "") {
     setPlayerCoins();
 
     document.getElementById(`buy${color}`).style.display = "none";
+
+    birdColors.forEach(function(colorName) {
+        const container = document.getElementById(colorName);
+        const textContainer = container.firstChild();
+
+        textContainer.setAttribute('class', (!includesColor) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue');
+    });
 }
 
 const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
 
-buttons.forEach(button => {
+buttons.forEach(function(button) {
     button.addEventListener('click', function() { 
         const color = button.getAttribute('data-color');
         const price = Number(button.getAttribute('data-price'));
