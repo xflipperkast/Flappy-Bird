@@ -37,7 +37,7 @@ function makeShopCell(birdColor = 'Red') {
 
 birdColors.forEach(function(color) {
     makeShopCell(color);
-})
+});
 
 
 function updateMesageContainer(response = [false, "Default value"]) {
@@ -53,6 +53,11 @@ function buyColor(price = 0, color = "") {
 
     checkColors(color);
     setPlayerCoins();
+
+    document.getElementById('birdsShowcase').innerHTML = "";
+    birdColors.forEach(function(color) {
+        makeShopCell(color);
+    });
 }
 
 const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
@@ -63,7 +68,7 @@ buttons.forEach(button => {
         const price = Number(button.getAttribute('data-price'));
         buyColor(price, color);
     });
-})
+});
 
 function setPlayerCoins() {
     const coinsContainer = document.getElementById('coins');
