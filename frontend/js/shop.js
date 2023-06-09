@@ -16,7 +16,7 @@ function makeShopCell(birdColor = 'Red') {
     
     const birdColorPrice = 200;
 
-    cell.setAttribute('id', 'cell');
+    cell.setAttribute('class', 'cell');
     cell.innerHTML += `
         <img src="./frontend/images/Birds/${birdColor}.png" alt="${birdColor} bird" />
         <h3>${birdColor} Bird</h3>
@@ -54,10 +54,7 @@ function buyColor(price = 0, color = "") {
     checkColors(color);
     setPlayerCoins();
 
-    document.getElementById('birdsShowcase').innerHTML = "";
-    birdColors.forEach(function(color) {
-        makeShopCell(color);
-    });
+    document.getElementById(`buy${color}`).style.display = "none";
 }
 
 const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
