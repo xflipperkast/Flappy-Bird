@@ -1,29 +1,88 @@
-const redButton = document.getElementById("buyRed");
-const blueButton = document.getElementById("buyBlue");
-const errorContainer = document.getElementById("errorContainer");
-const succesContainer = document.getElementById("succesContainer");
+const messageContainer = document.getElementById('messageContainer');
+
+// It is hardecoded, i dint find a workarroud to get all birds colors
+const birdColors = [
+    'Blue',
+    'Groen',
+    'Oranje',
+    'Porpel',
+    'Red',
+    'Roze',
+    'Yellow',
+]
+
+function makeShopCell(birdColor = 'Red') {
+    const birdsShowCase = document.getElementById('birdsShowcase');
+    const cell = document.createElement('div');
+    
+    // Consider making a funciton to make it more expensive
+    const birdColorPrice = 20;
+
+    cell.setAttribute('id', 'cell');
+    cell.innerHTML += `
+        <img src="./frontend/images/Birds/${birdColor}.png" alt="${birdColor} bird" />
+        <h3>${birdColor}</h2>
+        <div id="buy-${birdColor}">
+        <button id="buy${birdColor}" class="buy-button"
+                data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
+        </div>
+        <div class="priceContainer">
+            <p class='${(getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'blue'}'>
+                Price: ${birdColorPrice}
+            </p>
+            <div class="coinImage"></div>
+        </div>
+    `;
+    birdsShowCase.appendChild(cell)
+
+    if (getColors().includes(birdColor)) 
+        showBoughtMessage(birdColor);
+}
+
+function showBoughtMessage(birdColor) {
+        document.getElementById(`buy-${birdColor}`).innerHTML =  
+            `<p id="succesContainer">Color is already bought!</p>`
+}
+
+birdColors.forEach(function(color) {
+    makeShopCell(color);
+})
+
+
+function updateMesageContainer(response) {
+    messageContainer.innerHTML = response[1];
+    messageContainer.setAttribute('id', response[0] ? 'succesContainer' : 'errorContainer')
+}
 
 function buyColor(price = 0, color = "") {
     const response = spendCoins(price);
-    errorContainer.innerHTML = "";
-    succesContainer.innerHTML = "";
+    updateMesageContainer(response)
 
-    if (!response[0]) {
-        errorContainer.innerHTML = response[1];
-        return;
-    }
-
-    const colors = getColors();
+    if (!response[0]) 
+       return;
     
-    if (colors.includes(color)) {
-        errorContainer.innerHTML = "Color is already bought!";
-        spendCoins(-price);
-        return;
-    }
-
-    succesContainer.innerHTML = response[1];
     checkColors(color);
+    showBoughtMessage(color);
+    setPlayerCoins();
 }
 
-redButton.addEventListener('click', function() {buyColor(200, "Red")});
-blueButton.addEventListener('click', function() {buyColor(200, "Blue")});
+// Get all butons in a cell of the shop with the class "buy-button"
+const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() { 
+        const color = button.getAttribute('data-color');
+        const price = Number(button.getAttribute('data-price'));
+        buyColor(price, color);
+    })
+})
+
+// Just for show the player coins 
+function setPlayerCoins() {
+  const coinsContainer = document.getElementById('coins');
+  coinsContainer.innerHTML =  `
+      ${getCookieData('coinAmount')} Coins
+  `
+}
+
+setPlayerCoins();
