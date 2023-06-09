@@ -83,10 +83,11 @@ function fly() {
     }
     // If the flySound is playing, stop it
     if (!flySound.paused) {
-        flySound.currentTime = flySound.duration;
+        flySound.currentTime = 0;
     }
     // Then, start it again
     flySound.play();
+
     velocity = flyHeight;
 }
 
