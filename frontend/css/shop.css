@@ -65,6 +65,10 @@
     color: blue;
 }
 
+.priceContainer .green {
+    color: #22BB22FF;
+}
+
 h1 {
     text-align: center;
 }

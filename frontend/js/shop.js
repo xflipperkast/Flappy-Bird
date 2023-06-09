@@ -10,22 +10,28 @@ const birdColors = [
 ];
 
 function makeShopCell(birdColor = 'Red') {
-    if (getColors().includes(birdColor)) return;
+    const includesColor = getColors().includes(birdColor);
     const birdsShowCase = document.getElementById('birdsShowcase');
     const cell = document.createElement('div');
     
     const birdColorPrice = 200;
 
+    let name = `${birdColor} Bird`;
+
+    if (includesColor) {
+        name += "(bought)";
+    }
+
     cell.setAttribute('class', 'cell');
     cell.innerHTML += `
         <img src="./frontend/images/Birds/${birdColor}.png" alt="${birdColor} bird" />
-        <h3>${birdColor} Bird</h3>
+        <h3>${name}</h3>
         <div id="buy-${birdColor}">
             <button id="buy${birdColor}" class="buy-button"
                 data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
         </div>
         <div class="priceContainer">
-            <p class='${(getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'blue'}'>
+            <p class='${(!includesColor) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue'}'>
                 Price: ${birdColorPrice}
             </p>
             <div class="coinImage"></div>
@@ -33,6 +39,10 @@ function makeShopCell(birdColor = 'Red') {
     `;
 
     birdsShowCase.appendChild(cell);
+
+    if (includesColor) {
+        document.getElementById(`buy${birdColor}`).style.display = "none";
+    }
 }
 
 birdColors.forEach(function(color) {
