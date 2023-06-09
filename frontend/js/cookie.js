@@ -144,3 +144,4 @@ checkMaxScoreCookie(0);
 checkColors("Yellow");
 
 const getColors = () => { return toArray(getCookieData("colors")); }
+
