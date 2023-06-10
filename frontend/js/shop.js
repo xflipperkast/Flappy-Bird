@@ -31,7 +31,9 @@ function makeShopCell(birdColor = 'Red') {
                 data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
         </div>
         <div class="priceContainer" id="${birdColor}">
-            <p class='${(!includesColor) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue'}'>
+            <p class='${
+                !includesColor ? getCookieData('coinAmount') < birdColorPrice ? 'red' : 'green' : 'blue'
+            }'>
                 Price: ${birdColorPrice}
             </p>
             <div class="coinImage"></div>
@@ -72,7 +74,10 @@ function buyColor(price = 0, color = "") {
         const container = document.getElementById(colorName);
         const textContainer = container.firstElementChild;
 
-        textContainer.setAttribute('class', (!getColors().includes(colorName)) ? (getCookieData('coinAmount') < birdColorPrice) ? 'red' : 'green' : 'blue');
+        textContainer.setAttribute(
+            'class', 
+            !getColors().includes(colorName) ? getCookieData('coinAmount') < birdColorPrice ? 'red' : 'green' : 'blue'
+        );
     });
 }
 
