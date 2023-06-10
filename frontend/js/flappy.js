@@ -74,7 +74,7 @@ let delta;
 
 // Speed decider
 const flyHeight = -8;
-const obstacleVelocity = 8;
+const obstacleVelocity = 6;
 const gravity = 0.4;
 
 function fly() {
