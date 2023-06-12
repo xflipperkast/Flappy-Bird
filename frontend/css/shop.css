@@ -1,5 +1,60 @@
 @charset "utf-8";
 
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#welcomeContainer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+#welcomeSign {
+    --borderSize: 0.125em;
+
+    font-size: 2.5em;
+    
+    display: table;
+    margin: auto;
+    padding: 4px;
+    text-align: center;
+
+    border: var(--borderSize) dotted transparent;
+    border-radius: 16px;
+
+    background-position: calc(var(--borderSize) * -1) calc(var(--borderSize) * -1);
+    background-size: calc(var(--borderSize) * 2 + 100%) calc(var(--borderSize) * 2 + 100%);
+
+    background-image:
+        linear-gradient(to right, white, white),
+
+        conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red);
+    ;
+
+    background-clip: padding-box, border-box;
+
+    animation-name: rotate;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    /* animation-delay: 2s; */
+}
+
 #coins {
     display: flex;
     align-items: center;
@@ -30,7 +85,7 @@
 
 #birdsShowcase {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1em;
     margin: auto;
     max-width: 1200px;
@@ -41,6 +96,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: lightgray;
+    border-radius: 16px;
+    height: 200px;
+    margin: 16px;
+    margin-top: 0px;
 }
 
 
@@ -67,8 +127,4 @@
 
 .priceContainer .green {
     color: #22BB22FF;
-}
-
-h1 {
-    text-align: center;
 }
