@@ -10,6 +10,7 @@ const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
 const pointSound = new Audio('./frontend/sounds/point.mp3');
 const flySound = new Audio('./frontend/sounds/fly.mp3');
+const deadSound = new Audio('./frontend/sounds/dead.mp3');
 const coins = document.getElementsByClassName('coin');
 
 for (let i = 0; i < coins.length; i++) {
@@ -144,7 +145,7 @@ function gameOver() {
 
         if (delta > interval) {
             then = now - (delta % interval);
-
+            deadSound.play();
             birdY += 10; // This moves the bird down
             bird.style.top = birdY + 'px';
         }
