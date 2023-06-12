@@ -19,7 +19,8 @@ const birdColors = [
     'Floppy',
     'Chuck',
     'GreenFish',
-    'Jungle'
+    'Jungle',
+    'Rainbow'
 ];
 
 const birdColorPrice = 200;
