@@ -135,12 +135,11 @@ function startGame() {
 function gameOver() {
     isGameStarted = false;
     isDead = true;
-
+    deadSound.play();
     // New game over animation
     if (birdY < 480) { // 480 is the height of the game area
         now = Date.now();
         delta = now - then;
-        deadSound.play();
         requestAnimationFrame(gameOver);
 
         if (delta > interval) {
