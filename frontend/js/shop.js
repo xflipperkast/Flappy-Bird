@@ -18,7 +18,7 @@ const birdColors = [
     'Fishy',
     'Floppy',
     'Chuck',
-    'Green Fish',
+    'GreenFish',
     'Jungle'
 ];
 
