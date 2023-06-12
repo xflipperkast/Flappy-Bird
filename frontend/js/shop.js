@@ -6,7 +6,8 @@ const birdColors = [
     'Orange',
     'Purple',
     'Red',
-    'Pink'
+    'Pink',
+    'Doge'
 ];
 
 const birdColorPrice = 200;
