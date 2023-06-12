@@ -21,7 +21,7 @@
     position: absolute;
     width: 31px;
     height: 26px;
-    z-index: 7;
+    z-index: 2;
 }
 
 #gameOver{
@@ -37,7 +37,7 @@
     background: #00000000;
     background-size: 50px 290px;
     width: 50px;
-    z-index: 10;
+    z-index: 1;
 }
 
 .obstacleTop {
