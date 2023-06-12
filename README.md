@@ -31,9 +31,14 @@ SOON MORE INFO
 
 | Medal | Score | Image |
 | ------ | ------ | ------ |
-| 0- 49 | Bonze | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/bronze.png) |
-| 50-99 | Silver | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/silver.png) |
-| 100+ | Gold | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/gold.png) |
+| 0- 49 | Bonze | ![Bonze Medal](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/bronze.png) |
+| 50-99 | Silver | ![Silver Medal](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/silver.png) |
+| 100+ | Gold | ![Gold Medal](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/gold.png) |
+
+## Shop
+
+![Shop](https://i.ibb.co/KKpDYcL/image.png)
+
 
 ## Are there cookies?
 Yes We have cookies. We use it for saving data about the game like your personal best score.  
