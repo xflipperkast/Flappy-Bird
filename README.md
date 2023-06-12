@@ -13,6 +13,7 @@ SOON MORE INFO
 | Green | ![Green Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Green.png) |
 | Pink | ![Pink Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Pink.png) |
 | Orange | ![Orange Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Orange.png) |
+| Purple | ![Purple Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Purple.png) |
 | Easy To Add More|
 
 ## KeyBinds
