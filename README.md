@@ -17,6 +17,11 @@ spend the coins on new skins in the shop to play with.
 | Purple | ![Purple Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Purple.png) |
 | Easy To Add More|
 
+To add more birds add a 31x26 .png image in 
+frontend/images/birds
+go to frontend/js/shop.js
+and add the file name in the list with othernames ONLY THE NAME not .png behind it.
+
 ## KeyBinds
 
 | Key | Action |
@@ -26,7 +31,6 @@ spend the coins on new skins in the shop to play with.
 | Space | Fly |
 | Click | Fly |
 | Touch | Fly |
-
 
 ## Medals
 
@@ -45,3 +49,8 @@ spend the coins on new skins in the shop to play with.
 Yes We have cookies. We use it for saving data about the game like your personal best score.  
 We plan on putting more in there like coins and some other cool stuff, but for now we only have the score saved in there.  
 These cookies are needed for the game to work as intended!
+
+
+##Credits!
+Original Project starter: https://github.com/xflipperkast
+Cookies and most bug fixes and shop: https://github.com/ShadowWolf308
