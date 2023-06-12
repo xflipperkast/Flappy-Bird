@@ -1,8 +1,9 @@
 # Flappy-Bird
-Flappy Bird 
+Flappy Bird completely made in html/css/javascript
 
+Game: Fly between the opstacles to get a high score. Collect the coins and try to get far.
+spend the coins on new skins in the shop to play with.
 
-SOON MORE INFO
 ## Birds
 | Bird | Image |
 | ------ | ------ 
