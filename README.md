@@ -6,13 +6,13 @@ SOON MORE INFO
 ## Birds
 | Bird | Image |
 | ------ | ------ 
-| Red | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Red.png) |
-| Blue | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Blue.png) |
-| Yellow | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Yellow.png) |
-| Rainbow | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Rainbow.png) |
-| Green | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Green.png) |
-| Pink | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Pink.png) |
-| Orange | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Orange.png) |
+| Red | ![Red Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Red.png) |
+| Blue | ![Blue Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Blue.png) |
+| Yellow | ![Yellow Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Yellow.png) |
+| Rainbow | ![Rainbow Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Rainbow.png) |
+| Green | ![Green Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Green.png) |
+| Pink | ![Pink Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Pink.png) |
+| Orange | ![Orange Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Orange.png) |
 | Easy To Add More|
 
 ## KeyBinds
