@@ -12,18 +12,6 @@
     }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-#welcomeContainer {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-
 #welcomeSign {
     --borderSize: 0.125em;
 
@@ -52,7 +40,6 @@
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    /* animation-delay: 2s; */
 }
 
 #coins {
