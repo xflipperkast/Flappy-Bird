@@ -12,6 +12,7 @@ SOON MORE INFO
 | Rainbow | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Rainbow.png) |
 | Green | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Green.png) |
 | Pink | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Pink.png) |
+| Orange | ![alt text](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Orange.png) |
 | Easy To Add More|
 
 ## KeyBinds
