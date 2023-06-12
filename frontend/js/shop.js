@@ -7,6 +7,7 @@ const birdColors = [
     'Purple',
     'Red',
     'Pink',
+    'Gray',
     'Doge',
     'Police',
     'Glasses',
