@@ -140,12 +140,11 @@ function gameOver() {
     if (birdY < 480) { // 480 is the height of the game area
         now = Date.now();
         delta = now - then;
-
+        deadSound.play();
         requestAnimationFrame(gameOver);
 
         if (delta > interval) {
             then = now - (delta % interval);
-            deadSound.play();
             birdY += 10; // This moves the bird down
             bird.style.top = birdY + 'px';
         }
