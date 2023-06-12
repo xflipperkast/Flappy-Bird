@@ -9,7 +9,10 @@ const birdColors = [
     'Pink',
     'Doge',
     'Police',
-    'Glasses'
+    'Glasses',
+    'Dude',
+    'Sad',
+    'Speed'
 ];
 
 const birdColorPrice = 200;
