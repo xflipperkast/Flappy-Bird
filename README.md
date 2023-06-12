@@ -51,6 +51,6 @@ We plan on putting more in there like coins and some other cool stuff, but for n
 These cookies are needed for the game to work as intended!
 
 
-##Credits!
+## Credits!
 Original Project starter: https://github.com/xflipperkast
 Cookies and most bug fixes and shop: https://github.com/ShadowWolf308
