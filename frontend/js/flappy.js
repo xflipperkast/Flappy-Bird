@@ -86,8 +86,9 @@ function fly() {
     if (!flySound.paused) {
         flySound.currentTime = 0;
     }
-    // Then, start it again
-    flySound.play();
+    if (!isDead) { 
+        flySound.play();
+    }
 
     velocity = flyHeight;
 }
@@ -134,8 +135,6 @@ function startGame() {
 
 function gameOver() {
     isGameStarted = false;
-    isDead = true;
-    deadSound.play();
     // New game over animation
     if (birdY < 480) { // 480 is the height of the game area
         now = Date.now();
@@ -147,8 +146,12 @@ function gameOver() {
             birdY += 10; // This moves the bird down
             bird.style.top = birdY + 'px';
         }
-        
+        if (!isDead) { // !isDead means "if isDead is false"
+            deadSound.play();
+            isDead = true;
+        }
     } else {
+        
         bird.style.display = 'none';
         gameOverTag.style.display = 'block';
         scoreTag.style.display = 'block';
@@ -239,7 +242,7 @@ function update() {
 
         coins[i].style.top = coinY[i] + 'px';
 
-        if (birdY > 480 || birdY < 0 || 
+        if (birdY > 480|| 
           (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 
           (birdY < obstacleTopHeight[i] || birdY + 20 > obstacleTopHeight[i] + gapHeight))) {
             gameOverTag.innerHTML = "Game Over. Score: " + scoreData.getScore() + "<br> Click to try again.";
