@@ -1,4 +1,5 @@
 const messageContainer = document.getElementById('messageContainer');
+const buySound = new Audio('./frontend/sounds/buy.mp3');
 
 const birdColors = [
     'Blue',
@@ -82,6 +83,7 @@ function buyColor(price = 0, color = "") {
     if (!response[0]) return;
 
     checkColors(color);
+    buySound.play();
     setPlayerCoins();
 
     document.getElementById(`buy${color}`).style.display = "none";
