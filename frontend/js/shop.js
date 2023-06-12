@@ -83,6 +83,10 @@ function buyColor(price = 0, color = "") {
     if (!response[0]) return;
 
     checkColors(color);
+    if (!buySound.paused) {
+        buySound.currentTime = 0;
+    }
+    // Then, start it again
     buySound.play();
     setPlayerCoins();
 
