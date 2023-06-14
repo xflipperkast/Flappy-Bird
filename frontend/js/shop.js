@@ -2,6 +2,7 @@ const messageContainer = document.getElementById('messageContainer');
 const buySound = new Audio('./frontend/sounds/buy.mp3');
 
 const birdColors = [
+    'Yellow',
     'Blue',
     'Green',
     'Orange',
@@ -32,6 +33,7 @@ function makeShopCell(birdColor = 'Red') {
     const includesColor = getColors().includes(birdColor);
     const birdsShowCase = document.getElementById('birdsShowcase');
     const cell = document.createElement('div');
+    const isCurrentColor = getCookieData('currentColor') === birdColor;
 
     let name = `${birdColor} Bird`;
 
@@ -43,6 +45,10 @@ function makeShopCell(birdColor = 'Red') {
     cell.innerHTML += `
         <img src="./frontend/images/Birds/${birdColor}.png" alt="${birdColor} bird" />
         <h3>${name}</h3>
+        <div id="equip-${birdColor}">
+            <button id="equip${birdColor}" class="equip-button"
+                data-color="${birdColor}">${isCurrentColor ? 'Unequip' : 'Equip'}</button>
+        </div>
         <div id="buy-${birdColor}">
             <button id="buy${birdColor}" class="buy-button"
                 data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
@@ -68,7 +74,6 @@ birdColors.forEach(function(color) {
     makeShopCell(color);
 });
 
-
 function updateMesageContainer(response = [false, "Default value"]) {
     messageContainer.innerHTML = response[1];
     messageContainer.setAttribute('class', response[0] ? 'succesContainer' : 'errorContainer');
@@ -86,7 +91,6 @@ function buyColor(price = 0, color = "") {
     if (!buySound.paused) {
         buySound.currentTime = 0;
     }
-    // Then, start it again
     buySound.play();
     setPlayerCoins();
 
@@ -103,13 +107,39 @@ function buyColor(price = 0, color = "") {
     });
 }
 
-const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
+function equipColor(color = "") {
+    const currentColor = getCookieData('currentColor');
+    const colors = getColors();
 
-buttons.forEach(function(button) {
+    if (currentColor === color) {
+        if (colors.length > 1) {
+            setCookieData('currentColor', colors.find(c => c !== color));
+            document.getElementById(`equip${color}`).textContent = 'Equip';
+        } 
+    } else {
+        setCookieData('currentColor', color);
+        if (currentColor) {
+            document.getElementById(`equip${currentColor}`).textContent = 'Equip';
+        }
+        document.getElementById(`equip${color}`).textContent = 'Unequip';
+    }
+}
+
+const buyButtons = document.getElementById('shopBox').querySelectorAll('.buy-button');
+const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
+
+buyButtons.forEach(function(button) {
     button.addEventListener('click', function() { 
         const color = button.getAttribute('data-color');
         const price = Number(button.getAttribute('data-price'));
         buyColor(price, color);
+    });
+});
+
+equipButtons.forEach(function(button) {
+    button.addEventListener('click', function() { 
+        const color = button.getAttribute('data-color');
+        equipColor(color);
     });
 });
 
