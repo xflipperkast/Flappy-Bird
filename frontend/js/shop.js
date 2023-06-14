@@ -2,7 +2,7 @@ const messageContainer = document.getElementById('messageContainer');
 const buySound = new Audio('./frontend/sounds/buy.mp3');
 
 const birdColors = [
-    'Yellow'
+    'Yellow',
     'Blue',
     'Green',
     'Orange',
