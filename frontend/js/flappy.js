@@ -94,8 +94,11 @@ function fly() {
 }
 
 function getBirdColor() {
-    if (birds.length == 1 || birds.length == 0) {
+    if (birds.length == 0) {
         bird.style.backgroundImage = `url(./frontend/images/Birds/Yellow.png)`;
+        return;
+    } else if (birds.length == 1) {
+        bird.style.backgroundImage = `url(./frontend/images/Birds/${birds[0]}.png)`;
         return;
     }
 
@@ -108,6 +111,7 @@ function getBirdColor() {
     bird.style.backgroundImage = `url(./frontend/images/Birds/${birds[birdChoice]}.png)`;
     lastBird = birdChoice;
 }
+
 
 function startGame() {
     getBirdColor();
