@@ -245,7 +245,6 @@ function update() {
         if (birdY > 480|| 
           (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 
           (birdY < obstacleTopHeight[i] || birdY + 20 > obstacleTopHeight[i] + gapHeight))) {
-            checkMaxScoreCookie(getCookieData("maxScore"));
             gameOverTag.innerHTML = "Game Over. Score: " + scoreData.getScore() + "<br> High Score: " + getCookieData("maxScore");
             gameOver();
         }
