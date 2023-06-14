@@ -163,6 +163,7 @@ function gameOver() {
             obstacleX[i] = 650 + (400 * i);
             obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
             obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
+            scoreIncremented = false;
         }
 
         // Reset coin positions and heights
