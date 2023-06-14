@@ -113,14 +113,17 @@ function equipColor(color = "") {
 
     if (boughtColors.includes(color)) {
         if (colors.includes(color)) {
-            removeColor(color);
-            document.getElementById(`equip${color}`).innerText = 'Equip';
-        } else if (colors.length > 1) {
-            checkColors(color);
+            if (colors.length > 1) {  // We only allow removing the color if more than one color is equipped.
+                removeColor(color);
+                document.getElementById(`equip${color}`).innerText = 'Equip';
+            }
+        } else {
+            checkColors(color);  // Equip the color
             document.getElementById(`equip${color}`).innerText = 'Unequip';
         }
     }
 }
+
 
 function removeColor(colorToRemove) {
     const currentColors = getColors();
