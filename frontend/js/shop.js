@@ -106,24 +106,24 @@ function buyColor(price = 0, color = "") {
         );
     });
 }
-
 function equipColor(color = "") {
     const currentColor = getCookieData('currentColor');
     const colors = getColors();
 
     if (currentColor === color) {
         if (colors.length > 1) {
-            setCookieData('currentColor', colors.find(c => c !== color));
+            setCookie(colors.find(c => c !== color), 'currentColor'); // Changed setCookieData to setCookie
             document.getElementById(`equip${color}`).textContent = 'Equip';
         } 
     } else {
-        setCookieData('currentColor', color);
+        setCookie(color, 'currentColor'); // Changed setCookieData to setCookie
         if (currentColor) {
             document.getElementById(`equip${currentColor}`).textContent = 'Equip';
         }
         document.getElementById(`equip${color}`).textContent = 'Unequip';
     }
 }
+
 
 const buyButtons = document.getElementById('shopBox').querySelectorAll('.buy-button');
 const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
