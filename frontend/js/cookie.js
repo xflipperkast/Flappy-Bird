@@ -148,6 +148,13 @@ function checkColors(cookieValue = "Yellow") {
     // Check if a color is already set. If so, just return.
     if (cookie != "") {
         const array = toArray(cookie);
+
+        // Don't add Yellow if other colors are already present.
+        if (array.length > 0 && cookieValue == "Yellow") {
+            console.log("Other colors already present. Not adding Yellow.");
+            return;
+        }
+
         if (array.includes(cookieValue)) {
             console.log("Color already in cookie");
             return;
@@ -166,6 +173,7 @@ function checkColors(cookieValue = "Yellow") {
     setCookie(cookieValue, cookieName);
     console.log("set initial colors:", cookieValue)
 }
+
 
 
 checkMaxScoreCookie(0);
