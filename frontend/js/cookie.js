@@ -111,25 +111,54 @@ const toArray = (string = "") => {
     return returnedValue;
 }
 
-// Values that needs to be added to array as value passed
-function checkColors(cookieValue = "Yellow") {
-    const cookieName = "colors";
+//bought colors
+function checkBoughtColors(color = "Yellow") {
+    const cookieName = "boughtColors";
     const cookie = getCookieData(cookieName);
 
     if (cookie == "") {
-        setCookie(cookieValue, cookieName);
-        console.log("set initial colors:", cookieValue)
+        setCookie(color, cookieName);
+        console.log("set initial bought colors:", color)
         return;
     }
 
     let array = toArray(cookie);
 
-    if (array.includes(cookieValue)) {
+    if (array.includes(color)) {
+        console.log("Color already bought");
+        return;
+    }
+
+    array.push(color);
+    let valueForCookie = array.toString();
+
+    if (valueForCookie.substring(0, 1) === ",") {
+        valueForCookie = valueForCookie.slice(1)
+    }
+
+    setCookie(valueForCookie, cookieName);
+    console.log("set new bought colors cookie", valueForCookie);
+}
+
+// Values that needs to be added to array as value passed
+function checkColors(color = "Yellow") {
+    const cookieName = "colors";
+    const cookie = getCookieData(cookieName);
+
+    if (cookie == "") {
+        setCookie(color, cookieName);
+        console.log("set initial colors:", color)
+        return;
+    }
+
+    let array = toArray(cookie);
+
+    if (array.includes(color)) {
         console.log("Color already in cookie");
         return;
     }
 
-    array.push(cookieValue);
+    array.push(color);
     let valueForCookie = array.toString();
 
     if (valueForCookie.substring(0, 1) === ",") {
@@ -141,7 +170,9 @@ function checkColors(cookieValue = "Yellow") {
 }
 
 checkMaxScoreCookie(0);
+checkBoughtColors("Yellow");
 checkColors("Yellow");
 
 const getColors = () => { return toArray(getCookieData("colors")); }
+const getBoughtColors = () => { return toArray(getCookieData("boughtColors")); }
 
