@@ -169,6 +169,7 @@ function gameOver() {
         for(let i = 0; i < coinY.length; i++) {
             coinY[i] = obstacleTopHeight[i] + gapHeight / 2 - 20;
             coinX[i] = 655 + (400 * i);
+            coinCollected = false;
         }
 
         if (scoreData.getScore() >= 100) {
