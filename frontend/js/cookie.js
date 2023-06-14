@@ -141,33 +141,32 @@ function checkBoughtColors(color = "Yellow") {
 }
 
 // Values that needs to be added to array as value passed
-function checkColors(color = "Yellow") {
+function checkColors(cookieValue = "Yellow") {
     const cookieName = "colors";
     const cookie = getCookieData(cookieName);
 
-    if (cookie == "") {
-        setCookie(color, cookieName);
-        console.log("set initial colors:", color)
+    // Check if a color is already set. If so, just return.
+    if (cookie != "") {
+        const array = toArray(cookie);
+        if (array.includes(cookieValue)) {
+            console.log("Color already in cookie");
+            return;
+        }
+        array.push(cookieValue);
+        let valueForCookie = array.toString();
+        if (valueForCookie.substring(0, 1) === ",") {
+            valueForCookie = valueForCookie.slice(1)
+        }
+        setCookie(valueForCookie, cookieName);
+        console.log("set new colors cookie", valueForCookie);
         return;
     }
 
-    let array = toArray(cookie);
-
-    if (array.includes(color)) {
-        console.log("Color already in cookie");
-        return;
-    }
-
-    array.push(color);
-    let valueForCookie = array.toString();
-
-    if (valueForCookie.substring(0, 1) === ",") {
-        valueForCookie = valueForCookie.slice(1)
-    }
-
-    setCookie(valueForCookie, cookieName);
-    console.log("set new colors cookie", valueForCookie);
+    // No color was already set, so set the initial color to Yellow.
+    setCookie(cookieValue, cookieName);
+    console.log("set initial colors:", cookieValue)
 }
+
 
 checkMaxScoreCookie(0);
 checkBoughtColors("Yellow");
