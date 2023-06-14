@@ -122,6 +122,21 @@ function equipColor(color = "") {
     }
 }
 
+function removeColor(colorToRemove) {
+    const currentColors = getColors();
+    const index = currentColors.indexOf(colorToRemove);
+
+    if (index !== -1) {
+        currentColors.splice(index, 1);
+        const updatedColors = currentColors.join(",");
+        setCookie(updatedColors, "colors");
+        console.log("Removed color", colorToRemove);
+    } else {
+        console.log("Color not found in current colors", colorToRemove);
+    }
+}
+
+
 const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
 
 buttons.forEach(function(button) {
