@@ -15,12 +15,14 @@ spend the coins on new skins in the shop to play with.
 | Pink | ![Pink Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Pink.png) |
 | Orange | ![Orange Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Orange.png) |
 | Purple | ![Purple Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Purple.png) |
-| Easy To Add More|
+| And MANY More|
 
-To add more birds add a 31x26 .png image in 
-frontend/images/birds
-go to frontend/js/shop.js
-and add the file name in the list with othernames ONLY THE NAME not .png behind it.
+
+### How to add more birds
+*To add more birds add a 31x26 .png image in 
+*frontend/images/birds
+*go to frontend/js/shop.js
+*and add the file name in the list with othernames ONLY THE NAME not .png behind it.
 
 ## KeyBinds
 
