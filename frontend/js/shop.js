@@ -112,7 +112,7 @@ function removeColor(colorToRemove) {
 }
 
 
-const buttons = document.getElementsByClassName('buy-button');
+const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
 
 buttons.forEach(function(button) {
     button.addEventListener('click', function() { 
@@ -122,7 +122,7 @@ buttons.forEach(function(button) {
     });
 });
 
-const equipButtons = document.getElementsByClassName('equip-button');
+const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
 
 equipButtons.forEach(function(button) {
     button.addEventListener('click', function() { 
