@@ -17,7 +17,7 @@ for (let i = 0; i < coins.length; i++) {
     coins[i].style.display = "none";
 }
 
-const birds = getColors();
+const birds = getColors()[0] == "" ? [] : getColors();
 let lastBird = birds.length;
 let birdY = 200;
 let birdX = 100;
