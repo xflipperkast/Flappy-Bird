@@ -28,7 +28,7 @@ let scoreIncremented = false;
 let coinCollected = false;
 let collectedCoin = 0;
 
-const scoreData = (function() {
+const scoreData = (() => {
     let score = 0; // Encapsulated score
 
     return {
@@ -79,13 +79,16 @@ const obstacleVelocity = 6;
 const gravity = 0.4;
 
 function fly() {
+
     if (!isGameStarted && !isDead) {
         startGame();
     }
+
     // If the flySound is playing, stop it
     if (!flySound.paused) {
         flySound.currentTime = 0;
     }
+
     if (!isDead) { 
         flySound.play();
     }
@@ -139,6 +142,7 @@ function startGame() {
 
 function gameOver() {
     isGameStarted = false;
+
     // New game over animation
     if (birdY < 480) { // 480 is the height of the game area
         now = Date.now();
@@ -150,46 +154,48 @@ function gameOver() {
             birdY += 10; // This moves the bird down
             bird.style.top = birdY + 'px';
         }
+
         if (!isDead) { // !isDead means "if isDead is false"
             deadSound.play();
             isDead = true;
         }
-    } else {
-        
-        bird.style.display = 'none';
-        gameOverTag.style.display = 'block';
-        scoreTag.style.display = 'block';
-        birdY = 200;
-        velocity = 0;
 
-        // Reset obstacle positions and heights
-        for(let i = 0; i < obstacleX.length; i++) {
-            obstacleX[i] = 650 + (400 * i);
-            obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
-            obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
-            scoreIncremented = false;
-        }
-
-        // Reset coin positions and heights
-        for(let i = 0; i < coinY.length; i++) {
-            coinY[i] = obstacleTopHeight[i] + gapHeight / 2 - 20;
-            coinX[i] = 655 + (400 * i);
-            coinCollected = false;
-        }
-
-        if (scoreData.getScore() >= 100) {
-            goldMedal.style.display = 'block';
-        } else if (scoreData.getScore() >= 50) {
-            silverMedal.style.display = 'block';
-        } else {
-            bronzeMedal.style.display = 'block';
-        }
-
-        checkMaxScoreCookie(scoreData.getScore());
-        scoreData.resetScore();
-        medalBox.style.display = 'block';
-        setTimeout(() => { isDead = false }, 2000);
+        return;
     }
+
+    bird.style.display = 'none';
+    gameOverTag.style.display = 'block';
+    scoreTag.style.display = 'block';
+    birdY = 200;
+    velocity = 0;
+
+    // Reset obstacle positions and heights
+    for(let i = 0; i < obstacleX.length; i++) {
+        obstacleX[i] = 650 + (400 * i);
+        obstacleTopHeight[i] = Math.floor(Math.random() * 200) + 50;
+        obstacleBottomHeight[i] = 480 - obstacleTopHeight[i] - gapHeight;
+        scoreIncremented = false;
+    }
+
+    // Reset coin positions and heights
+    for(let i = 0; i < coinY.length; i++) {
+        coinY[i] = obstacleTopHeight[i] + gapHeight / 2 - 20;
+        coinX[i] = 655 + (400 * i);
+        coinCollected = false;
+    }
+
+    if (scoreData.getScore() >= 100) {
+        goldMedal.style.display = 'block';
+    } else if (scoreData.getScore() >= 50) {
+        silverMedal.style.display = 'block';
+    } else {
+        bronzeMedal.style.display = 'block';
+    }
+
+    checkMaxScoreCookie(scoreData.getScore());
+    scoreData.resetScore();
+    medalBox.style.display = 'block';
+    setTimeout(() => { isDead = false }, 2000);
 }
 
 function update() {

@@ -1,35 +1,7 @@
 const messageContainer = document.getElementById('messageContainer');
 const buySound = new Audio('./frontend/sounds/buy.mp3');
 
-const birdColors = [
-    'Yellow',
-    'Blue',
-    'Green',
-    'Orange',
-    'Purple',
-    'Red',
-    'Pink',
-    'Gray',
-    'Doge',
-    'Police',
-    'Glasses',
-    'Dude',
-    'Sad',
-    'Speed',
-    'Girl',
-    'Propellor',
-    'Fishy',
-    'Floppy',
-    'Chuck',
-    'GreenFish',
-    'Jungle',
-    'Rainbow',
-    'Bubble'
-];
-
-const birdColorPrice = 200;
-
-function makeShopCell(birdColor = 'Red') {
+function makeShopCell(birdColor = 'Red', price = 200) {
     const includesColor = getBoughtColors().includes(birdColor);
     const birdsShowCase = document.getElementById('birdsShowcase');
     const cell = document.createElement('div');
@@ -46,15 +18,15 @@ function makeShopCell(birdColor = 'Red') {
         <h3>${name}</h3>
         <div id="buy-${birdColor}">
             <button id="buy${birdColor}" class="buy-button"
-                data-color="${birdColor}" data-price=${birdColorPrice}>Buy this color</button>
+                data-color="${birdColor}" data-price=${price}>Buy this color</button>
             <button id="equip${birdColor}" class="equip-button"
-                data-color="${birdColor}" style="display:${includesColor ? 'block' : 'none'};">${getColors().includes(birdColor) ? 'Unequip' : 'Equip'}</button>
+                data-color="${birdColor}" style="display:${includesColor ? 'block' : 'none'};">Unequip</button>
         </div>
         <div class="priceContainer" id="${birdColor}">
             <p class='${
-                !includesColor ? getCookieData('coinAmount') < birdColorPrice ? 'red' : 'green' : 'blue'
+                !includesColor ? getCookieData('coinAmount') < price ? 'red' : 'green' : 'blue'
             }'>
-                Price: ${birdColorPrice}
+                Price: ${price}
             </p>
             <div class="coinImage"></div>
         </div>
@@ -68,7 +40,7 @@ function makeShopCell(birdColor = 'Red') {
 }
 
 birdColors.forEach(function(color) {
-    makeShopCell(color);
+    makeShopCell(color.color, color.price);
 });
 
 
@@ -140,7 +112,7 @@ function removeColor(colorToRemove) {
 }
 
 
-const buttons = document.getElementById('shopBox').querySelectorAll('.buy-button');
+const buttons = document.getElementsByClassName('buy-button');
 
 buttons.forEach(function(button) {
     button.addEventListener('click', function() { 
@@ -150,7 +122,7 @@ buttons.forEach(function(button) {
     });
 });
 
-const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
+const equipButtons = document.getElementsByClassName('equip-button');
 
 equipButtons.forEach(function(button) {
     button.addEventListener('click', function() { 
