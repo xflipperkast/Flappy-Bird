@@ -37,11 +37,11 @@ const birdColors = [
     },
     {
         color: 'Police',
-        price: 200
+        price: 250
     },
     {
         color: 'Glasses',
-        price: 200
+        price: 250
     },
     {
         color: 'Dude',
@@ -49,7 +49,7 @@ const birdColors = [
     },
     {
         color: 'Sad',
-        price: 200
+        price: 250
     },
     {
         color: 'Speed',
@@ -61,15 +61,15 @@ const birdColors = [
     },
     {
         color: 'Propellor',
-        price: 200
+        price: 300
     },
     {
         color: 'Fishy',
-        price: 200
+        price: 350
     },
     {
         color: 'Floppy',
-        price: 200
+        price: 350
     },
     {
         color: 'Chuck',
@@ -77,7 +77,7 @@ const birdColors = [
     },
     {
         color: 'GreenFish',
-        price: 200
+        price: 350
     },
     {
         color: 'Jungle',
@@ -85,10 +85,10 @@ const birdColors = [
     },
     {
         color: 'Rainbow',
-        price: 200
+        price: 500
     },
     {
         color: 'Bubble',
-        price: 200
+        price: 400
     }
 ];
