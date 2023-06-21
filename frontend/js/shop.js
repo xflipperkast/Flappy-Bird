@@ -79,6 +79,24 @@ function buyColor(price = 0, color = "") {
     });
 }
 
+
+function updateEquipButtons() {
+    const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
+    
+    equipButtons.forEach(function(button) {
+        const color = button.getAttribute('data-color');
+        const colors = getColors();
+
+        if (colors.includes(color)) {
+            button.innerText = 'Unequip';
+        } else {
+            button.innerText = 'Equip';
+        }
+    });
+}
+
+
+
 function equipColor(color = "") {
     const colors = getColors();
     const boughtColors = getBoughtColors();
@@ -94,6 +112,7 @@ function equipColor(color = "") {
             document.getElementById(`equip${color}`).innerText = 'Unequip';
         }
     }
+    updateEquipButtons(); // add this line
 }
 
 
@@ -109,6 +128,7 @@ function removeColor(colorToRemove) {
     } else {
         console.log("Color not found in current colors", colorToRemove);
     }
+    updateEquipButtons(); // add this line
 }
 
 
