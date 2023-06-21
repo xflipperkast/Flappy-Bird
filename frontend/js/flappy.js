@@ -145,7 +145,6 @@ function bobBird() {
 function prepareGameStart() {
     if (!isGameStarted && !isGamePrepared) {
         getBirdColor();
-
         isBobbing = true;
         bobBird();
 
