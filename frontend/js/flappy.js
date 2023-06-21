@@ -180,7 +180,6 @@ function startGame() {
     isGameStarted = true;
     isGamePrepared = false;
     isBobbing = false;
-    getBirdColor();
 
     birdY = 200;
     birdX = 100;
