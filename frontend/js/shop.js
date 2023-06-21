@@ -112,7 +112,7 @@ function equipColor(color = "") {
             document.getElementById(`equip${color}`).innerText = 'Unequip';
         }
     }
-    updateEquipButtons(); // add this line
+    updateEquipButtons();
 }
 
 
@@ -128,7 +128,7 @@ function removeColor(colorToRemove) {
     } else {
         console.log("Color not found in current colors", colorToRemove);
     }
-    updateEquipButtons(); // add this line
+    updateEquipButtons(); 
 }
 
 
@@ -157,3 +157,4 @@ function setPlayerCoins() {
 }
 
 setPlayerCoins();
+updateEquipButtons();
