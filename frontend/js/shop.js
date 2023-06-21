@@ -103,7 +103,7 @@ function equipColor(color = "") {
 
     if (boughtColors.includes(color)) {
         if (colors.includes(color)) {
-            if (colors.length > 1) {  // We only allow removing the color if more than one color is equipped.
+            if (colors.length > 1) {
                 removeColor(color);
                 document.getElementById(`equip${color}`).innerText = 'Equip';
             }
