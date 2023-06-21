@@ -8,6 +8,7 @@ const medalBox = document.getElementById('medalBox');
 const goldMedal = document.getElementById('goldMedal');
 const silverMedal = document.getElementById('silverMedal');
 const bronzeMedal = document.getElementById('bronzeMedal');
+const getready = document.getElementById('getReady');
 const pointSound = new Audio('./frontend/sounds/point.mp3');
 const flySound = new Audio('./frontend/sounds/fly.mp3');
 const deadSound = new Audio('./frontend/sounds/dead.mp3');
@@ -17,16 +18,23 @@ for (let i = 0; i < coins.length; i++) {
     coins[i].style.display = "none";
 }
 
+//bird colors and movement
 const birds = getColors()[0] == "" ? [] : getColors();
 let lastBird = birds.length;
 let birdY = 200;
 let birdX = 100;
 let velocity = 0;
-let isGameStarted = false;
-let isDead = false;
+let isBobbing = false;
+
+//coins and score
 let scoreIncremented = false;
 let coinCollected = false;
 let collectedCoin = 0;
+
+//game
+let isGamePrepared = false;
+let isGameStarted = false;
+let isDead = false;
 
 const scoreData = (() => {
     let score = 0; // Encapsulated score
@@ -78,9 +86,14 @@ const flyHeight = -8;
 const obstacleVelocity = 6;
 const gravity = 0.4;
 
+
+//fly 
 function fly() {
 
-    if (!isGameStarted && !isDead) {
+    if (!isGameStarted && !isDead && !isGamePrepared) {
+        prepareGameStart();
+        return;
+    } else if (!isGameStarted && !isDead && isGamePrepared) {
         startGame();
     }
 
@@ -96,6 +109,8 @@ function fly() {
     velocity = flyHeight;
 }
 
+
+//color stuff
 function getBirdColor() {
     if (birds.length == 0) {
         bird.style.backgroundImage = `url(./frontend/images/Birds/Yellow.png)`;
@@ -116,14 +131,69 @@ function getBirdColor() {
 }
 
 
+//stuff before game
+function bobBird() {
+    if (!isBobbing) return;
+
+    // Calculate new bird Y position
+    birdY = 200 + 50 * Math.sin(Date.now() / 500);
+    bird.style.top = birdY + 'px';
+
+    // Request next frame
+    requestAnimationFrame(bobBird);
+}
+function prepareGameStart() {
+    if (!isGameStarted && !isGamePrepared) {
+        getBirdColor();
+
+        isBobbing = true;
+        bobBird();
+
+        birdY = 250;
+        birdX = 100;
+        medalBox.style.display = 'none';
+        goldMedal.style.display = 'none';
+        silverMedal.style.display = 'none';
+        bronzeMedal.style.display = 'none';
+        getReady.style.display = 'block';
+        bird.style.display = 'block';
+        bird.style.top = birdY + 'px';
+        bird.style.left = birdX + 'px';
+
+        // Hide the obstacles
+        for (let i = 0; i < 2; i++) {
+            obstacleTop[i].style.display = 'none';
+            obstacleBottom[i].style.display = 'none';
+            coins[i].style.display = 'none';
+        }
+        
+        // Rotate the bird to its initial state
+        bird.style.transform = `rotate(0deg)`;
+
+        isGamePrepared = true;
+    }
+}
+
+
+
+//starting the game
 function startGame() {
+    isGameStarted = true;
+    isGamePrepared = false;
+    isBobbing = false;
     getBirdColor();
 
     birdY = 200;
     birdX = 100;
-    isGameStarted = true;
     bird.style.display = 'block';
     scoreTag.style.display = 'block';
+
+    // Show the obstacles and coins
+    for (let i = 0; i < 2; i++) {
+        obstacleTop[i].style.display = 'block';
+        obstacleBottom[i].style.display = 'block';
+        coins[i].style.display = "block";
+    }
 
     // Hide medal box and medals
     medalBox.style.display = 'none';
@@ -131,17 +201,19 @@ function startGame() {
     silverMedal.style.display = 'none';
     bronzeMedal.style.display = 'none';
 
+    getReady.style.display = 'none';
     gameOverTag.style.position = 'absolute';
 
-    for (let i = 0; i < coins.length; i++) {
-        coins[i].style.display = "block";
-    }
+    // Start bobbing the bird
 
     update()
 }
 
+
+//game over (dead)
 function gameOver() {
     isGameStarted = false;
+    isGamePrepared = false;
 
     // New game over animation
     if (birdY < 480) { // 480 is the height of the game area
@@ -198,6 +270,9 @@ function gameOver() {
     setTimeout(() => { isDead = false }, 2000);
 }
 
+
+
+//game update
 function update() {
     if (!isGameStarted) return;
 
@@ -266,8 +341,11 @@ function update() {
     scoreTag.innerHTML = 'Score: ' + scoreData.getScore();
 }
 
-window.addEventListener('click', fly);
-window.addEventListener('touchstart', fly);
+
+
+//click (listeners)
+gameBox.addEventListener('click', fly);
+gameBox.addEventListener('touchstart', fly);
 window.addEventListener('keydown', function(e) {
     if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') fly();
 });
