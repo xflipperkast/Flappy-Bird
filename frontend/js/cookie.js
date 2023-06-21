@@ -172,7 +172,9 @@ function checkColors(cookieValue) {
 
 checkMaxScoreCookie(0);
 checkBoughtColors("Yellow");
-checkColors("Yellow");
+if (!getCookieData("colors") || getCookieData("colors") === "") {
+    checkColors("Yellow");
+}
 
 const getColors = () => { return toArray(getCookieData("colors")); }
 const getBoughtColors = () => { return toArray(getCookieData("boughtColors")); }
