@@ -141,19 +141,13 @@ function checkBoughtColors(color = "Yellow") {
 }
 
 // Values that needs to be added to array as value passed
-function checkColors(cookieValue = "Yellow") {
+function checkColors(cookieValue) {
     const cookieName = "colors";
     const cookie = getCookieData(cookieName);
 
     // Check if a color is already set. If so, just return.
     if (cookie != "") {
         const array = toArray(cookie);
-
-        // Don't add Yellow if other colors are already present.
-        if (array.length > 0 && cookieValue == "Yellow") {
-            console.log("Other colors already present. Not adding Yellow.");
-            return;
-        }
 
         if (array.includes(cookieValue)) {
             console.log("Color already in cookie");
