@@ -48,7 +48,7 @@ spend the coins on new skins in the shop to play with.
 | Click | Fly |
 | Touch | Fly |
 
-^Yea it is basically just fly :D^
+###### Yea it is basically just fly :D
 
 ## Medals
 
@@ -69,7 +69,7 @@ We plan on putting more in there like coins and some other cool stuff, but for n
 These cookies are needed for the game to work as intended!  
 These cookies are **NOT** used to track you or sell data to advertisment companies (Even we can't see them).
 
-==It is adviced to leave the cookies alone and not edit them as that can cause unexpected issues!==
+**It is adviced to leave the cookies alone and not edit them as that can cause unexpected issues!**
 
 ## Credits!
 Original Project starter: https://github.com/xflipperkast  
