@@ -48,6 +48,7 @@ spend the coins on new skins in the shop to play with.
         }
     ];
     ```
+* Yes it is possible to anime .png images and those animations will then play in the game (or just use static images)
 
 ## KeyBinds
 
