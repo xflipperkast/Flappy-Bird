@@ -44,7 +44,7 @@
     background: #00000000;
     background-size: 50px 290px;
     width: 50px;
-    z-index: 1;
+    z-index: 3;
 }
 
 .obstacleTop {
@@ -104,5 +104,5 @@
     width: 40px;
     background-size: 80px 80px;
     background-position: center center;
-    z-index: 5;
+    z-index: 1;
 }
