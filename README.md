@@ -10,7 +10,7 @@
 Flappy Bird completely made in html, css and javascript
 
 Game: Fly between the opstacles to get a high score. Collect the coins and try to get far.  
-spend the coins on new skins in the shop to play with.
+Spend the coins on new skins in the shop to play with.
 
 ## Birds
 | Bird | Look of the bird |
@@ -31,10 +31,10 @@ spend the coins on new skins in the shop to play with.
 
 ## How to add more birds
 
-* To add more birds add a 31x26 .png image in `frontend/images/birds`
-* Go to `frontend/js/birdColors.js`
+* To add more birds add a 31x26 .png image in `frontend/images/birds`.
+* Go to `frontend/js/birdColors.js`.
 * And add the file name along with the price in the list with the other birds ONLY THE NAME not .png behind it.  
-    
+
     For example:  
     ```javascript
     const birdColors = [
@@ -49,7 +49,8 @@ spend the coins on new skins in the shop to play with.
         }
     ];
     ```
-* Yes it is possible to animate .png images and those animations will then play in the game (or just use static images)
+* Yes it is possible to animate .png images and those animations will then play in the game (or just use static images)  
+    Don't ask how, we don't know.
 
 ## KeyBinds
 
@@ -65,7 +66,9 @@ spend the coins on new skins in the shop to play with.
 
 ## Medals
 
-| Medal | Score | Image |
+You can win medals based on the score you get:
+
+| Score | Medal | Image |
 | ------ | ------ | ------ |
 | 0- 49 | Bonze | ![Bonze Medal](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/bronze.png) |
 | 50-99 | Silver | ![Silver Medal](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/medals/silver.png) |
