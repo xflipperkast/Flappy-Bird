@@ -25,7 +25,7 @@ spend the coins on new skins in the shop to play with.
 | Purple | ![Purple Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Purple.png) |
 | Lime | ![Lime Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Lime.png) |
 | Floppy | ![Floppy Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Floppy.png) |
-| Proppelor | ![Propellor Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Propellor.png) |
+| Jungle | ![Jungle Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Jungle.png) |
 | And more! | :smiley: |
 
 
