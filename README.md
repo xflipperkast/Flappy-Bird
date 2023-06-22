@@ -1,15 +1,16 @@
-# Flappy-Bird
-Flappy Bird completely made in html, css and javascript
-
-Game: Fly between the opstacles to get a high score. Collect the coins and try to get far.  
-spend the coins on new skins in the shop to play with.
-
+# Go to:
 * [Birds](#birds)
 * [Keybinds](#keybinds)
 * [Medals](#medals)
 * [Shop](#shop)
 * [Cookies](#cookies)
 * [Credits](#credits)
+
+# Flappy-Bird
+Flappy Bird completely made in html, css and javascript
+
+Game: Fly between the opstacles to get a high score. Collect the coins and try to get far.  
+spend the coins on new skins in the shop to play with.
 
 ## Birds
 | Bird | Look of the bird |
