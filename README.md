@@ -14,7 +14,7 @@ spend the coins on new skins in the shop to play with.
 
 ## Birds
 | Bird | Look of the bird |
-| ------ | ------ |
+| ------ | :----: |
 | Red | ![Red Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Red.png) |
 | Blue | ![Blue Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Blue.png) |
 | Yellow | ![Yellow Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Yellow.png) |
@@ -23,7 +23,7 @@ spend the coins on new skins in the shop to play with.
 | Pink | ![Pink Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Pink.png) |
 | Orange | ![Orange Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Orange.png) |
 | Purple | ![Purple Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Purple.png) |
-| And MANY More |
+| And MANY More |  |
 
 
 ## How to add more birds
