@@ -60,11 +60,8 @@ function checkMaxScoreCookie(cookieValue = 0) {
 
     if (cookie == "" || Number(cookie) < cookieValue) {
         setCookie(cookieValue, "maxScore");
-        console.log("set new max score", cookieValue, "Was:", cookie);
         return;
     }
-
-    console.log("Did not update score", cookieValue, "Was:", cookie);
 
 }
 
@@ -78,14 +75,12 @@ function checkCoins(cookieValue = 0) {
 
     if (cookie == "") {
         setCookie(cookieValue, cookieName);
-        console.log("Set initial cookie for coins:", cookieValue);
         return;
     }
 
     cookieValue += Number(cookie);
 
     setCookie(cookieValue, cookieName);
-    console.log("Updated cookie for coins:", cookieValue, "Was:", cookie);
 }
 
 // This returns an array of a boolean if it has worked and a string of why it has failed or that is has passed
@@ -118,14 +113,12 @@ function checkBoughtColors(color = "Yellow") {
 
     if (cookie == "") {
         setCookie(color, cookieName);
-        console.log("set initial bought colors:", color)
         return;
     }
 
     let array = toArray(cookie);
 
     if (array.includes(color)) {
-        console.log("Color already bought");
         return;
     }
 
@@ -133,11 +126,10 @@ function checkBoughtColors(color = "Yellow") {
     let valueForCookie = array.toString();
 
     if (valueForCookie.substring(0, 1) === ",") {
-        valueForCookie = valueForCookie.slice(1)
+        valueForCookie = valueForCookie.slice(1);
     }
 
     setCookie(valueForCookie, cookieName);
-    console.log("set new bought colors cookie", valueForCookie);
 }
 
 // Values that needs to be added to array as value passed
@@ -150,22 +142,19 @@ function checkColors(cookieValue) {
         const array = toArray(cookie);
 
         if (array.includes(cookieValue)) {
-            console.log("Color already in cookie");
             return;
         }
         array.push(cookieValue);
         let valueForCookie = array.toString();
         if (valueForCookie.substring(0, 1) === ",") {
-            valueForCookie = valueForCookie.slice(1)
+            valueForCookie = valueForCookie.slice(1);
         }
         setCookie(valueForCookie, cookieName);
-        console.log("set new colors cookie", valueForCookie);
         return;
     }
 
     // No color was already set, so set the initial color to Yellow.
     setCookie(cookieValue, cookieName);
-    console.log("set initial colors:", cookieValue)
 }
 
 
