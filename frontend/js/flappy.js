@@ -18,7 +18,7 @@ for (let i = 0; i < coins.length; i++) {
     coins[i].style.display = "none";
 }
 
-//bird colors and movement
+// Bird colors and movement
 const birds = getColors()[0] == "" ? [] : getColors();
 let lastBird = birds.length;
 let birdY = 200;
@@ -26,16 +26,17 @@ let birdX = 100;
 let velocity = 0;
 let isBobbing = false;
 
-//coins and score
+// Coins and score
 let scoreIncremented = false;
 let coinCollected = false;
 let collectedCoin = 0;
 
-//game
+// Game
 let isGamePrepared = false;
 let isGameStarted = false;
 let isDead = false;
 
+// The score has been encapsulated to prevent the user from editing this value in the console
 const scoreData = (() => {
     let score = 0; // Encapsulated score
 
