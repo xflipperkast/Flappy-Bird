@@ -26,6 +26,8 @@ Spend the coins on new skins in the shop to play with.
 | Lime | ![Lime Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Lime.png) |
 | Floppy | ![Floppy Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Floppy.png) |
 | Bubble | ![Bubble Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Bubble.png) |
+| Grellow (don't ask) | ![Grellow Bird (again don't ask)](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Grellow.png) |
+| Ukraine | ![Ukraine Bird](https://github.com/xflipperkast/Flappy-Bird/blob/main/frontend/images/Birds/Ukraine.png) |
 | And more! | :smiley: |
 
 
