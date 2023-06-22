@@ -34,6 +34,7 @@ spend the coins on new skins in the shop to play with.
 * To add more birds add a 31x26 .png image in `frontend/images/birds`
 * Go to `frontend/js/birdColors.js`
 * And add the file name along with the price in the list with the other birds ONLY THE NAME not .png behind it.  
+    
     For example:  
     ```javascript
     const birdColors = [
@@ -48,7 +49,7 @@ spend the coins on new skins in the shop to play with.
         }
     ];
     ```
-* Yes it is possible to anime .png images and those animations will then play in the game (or just use static images)
+* Yes it is possible to animate .png images and those animations will then play in the game (or just use static images)
 
 ## KeyBinds
 
