@@ -4,6 +4,13 @@ Flappy Bird completely made in html, css and javascript
 Game: Fly between the opstacles to get a high score. Collect the coins and try to get far.  
 spend the coins on new skins in the shop to play with.
 
+* [Birds](#birds)
+* [Keybinds](#keybinds)
+* [Medals](#medals)
+* [Shop](#shop)
+* [Cookies](#cookies)
+* [Credits](#credits)
+
 ## Birds
 | Bird | Look of the bird |
 | ------ | ------ |
@@ -18,7 +25,7 @@ spend the coins on new skins in the shop to play with.
 | And MANY More |
 
 
-### How to add more birds
+## How to add more birds
 
 * To add more birds add a 31x26 .png image in `frontend/images/birds`
 * Go to `frontend/js/birdColors.js`
@@ -63,9 +70,8 @@ spend the coins on new skins in the shop to play with.
 ![Shop](https://i.ibb.co/KKpDYcL/image.png)
 
 
-## Are there cookies?
-Yes We have cookies. We use it for saving data about the game like your personal best score.  
-We plan on putting more in there like coins and some other cool stuff, but for now we only have the score saved in there.  
+## Cookies
+We use it for saving data about the game like your personal best score, bought colors, equiped colors and coins.   
 These cookies are needed for the game to work as intended!  
 These cookies are **NOT** used to track you or sell data to advertisment companies (Even we can't see them).
 
