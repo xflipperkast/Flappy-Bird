@@ -88,13 +88,14 @@ function updateEquipButtons() {
 
     if (colors.includes(color)) {
       button.innerText = 'Unequip';
-      button.style.color = 'red'; // Add this line to set the button color to red
+      button.style.backgroundColor = 'red'; // Add this line to set the button background color to red
     } else {
       button.innerText = 'Equip';
-      button.style.color = ''; // Reset the button color to default
+      button.style.backgroundColor = ''; // Reset the button background color to default
     }
   });
 }
+
 
 
 
