@@ -64,7 +64,7 @@ function buyColor(price = 0, color = "") {
     }
     buySound.play();
     setPlayerCoins();
-
+    updateEquipButtons(); // reload buttons i guess
     document.getElementById(`buy${color}`).style.display = "none";
     document.getElementById(`equip${color}`).style.display = "block";
 
