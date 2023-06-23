@@ -110,6 +110,50 @@ function fly() {
     velocity = flyHeight;
 }
 
+// floor
+const floorShadowContainer = document.getElementById('groundShadow');
+const floors = document.getElementsByClassName('ground');
+let floorLocations = [
+    {
+        x: 0,
+        y: 0
+    },
+    {
+        x: 640,
+        y: 0
+    }
+];
+
+floorLocations.forEach(function(floorLocation, index) {
+    floors[index].style.left = floorLocation.x;
+});
+
+function moveGround(beforeStart = false) {
+    if (beforeStart) {
+        floorLocations.forEach(function(floorLocation, index) {
+            floorLocation.x -= obstacleVelocity / 2;
+
+            if (floorLocation.x < -640) {
+                floorLocation.x = 640;
+            }
+    
+            floors[index].style.left = floorLocation.x + 'px';
+        });
+
+        return;
+    }
+
+    floorLocations.forEach(function(floorLocation, index) {
+        floorLocation.x -= obstacleVelocity;
+
+        if (floorLocation.x < -640) {
+            floorLocation.x = 640;
+        }
+
+        floors[index].style.left = floorLocation.x + 'px';
+    });
+
+}
 
 //color stuff
 function getBirdColor() {
@@ -141,6 +185,7 @@ function bobBird() {
     bird.style.top = birdY + 'px';
 
     // Request next frame
+    moveGround(true);
     requestAnimationFrame(bobBird);
 }
 function prepareGameStart() {
@@ -151,6 +196,8 @@ function prepareGameStart() {
 
         birdY = 250;
         birdX = 100;
+
+        floorShadowContainer.style.zIndex = 1;
         medalBox.style.display = 'none';
         goldMedal.style.display = 'none';
         silverMedal.style.display = 'none';
@@ -215,7 +262,7 @@ function gameOver() {
     isGamePrepared = false;
 
     // New game over animation
-    if (birdY < 480) { // 480 is the height of the game area
+    if (birdY < 460) { // 480 is the height of the game area
         now = Date.now();
         delta = now - then;
         requestAnimationFrame(gameOver);
@@ -234,6 +281,7 @@ function gameOver() {
         return;
     }
 
+    floorShadowContainer.style.zIndex = 100;
     bird.style.display = 'none';
     gameOverTag.style.display = 'block';
     scoreTag.style.display = 'block';
@@ -286,6 +334,8 @@ function update() {
 
     birdY += velocity;
     velocity += gravity;
+
+    moveGround();
 
     for (let i = 0; i < 2; i++) { // Update for each set of obstacles
         obstacleX[i] -= obstacleVelocity;

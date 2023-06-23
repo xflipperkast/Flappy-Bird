@@ -5,6 +5,7 @@
     height: 480px;
     width: 640px;
     border: 1px solid black;
+    border-bottom: 0px solid black;
     margin: 0 auto;
     overflow: hidden;
     background-image: url(../images/background.png);
@@ -105,4 +106,34 @@
     background-size: 80px 80px;
     background-position: center center;
     z-index: 1;
+}
+
+#groundBox {
+    position: relative;
+    top: 0;
+    width: 640px;
+    height: 48px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid black;
+    border-top: 0px solid black;
+}
+
+.ground {
+    position: absolute;
+    top: 0px;
+    background-image: url(../images/floor.png);
+    background-size: 655px 48px;
+    width: 650px;
+    height: 48px;
+    z-index: 10;
+}
+
+#groundShadow {
+    position: absolute;
+    top: 0px;
+    height: 48px;
+    width: 640px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
 }
