@@ -48,6 +48,14 @@ const birdColors = [
         price: 200
     },
     {
+        color: 'ParasolKirby',
+        price: 200
+    },
+    {
+        color: 'FloatKirby',
+        price: 200
+    },
+    {
         color: 'Police',
         price: 250
     },
