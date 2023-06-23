@@ -44,7 +44,7 @@ const birdColors = [
         price: 200
     },
     {
-        color: 'Kirb',
+        color: 'Kirby',
         price: 200
     },
     {
