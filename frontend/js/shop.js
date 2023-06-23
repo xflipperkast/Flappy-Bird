@@ -64,10 +64,9 @@ function buyColor(price = 0, color = "") {
     }
     buySound.play();
     setPlayerCoins();
-
     document.getElementById(`buy${color}`).style.display = "none";
     document.getElementById(`equip${color}`).style.display = "block";
-
+    updateEquipButtons(); // reload buttons i guess
     birdColors.forEach(function(colorName) {
         const container = document.getElementById(colorName);
         const textContainer = container.firstElementChild;
@@ -81,19 +80,23 @@ function buyColor(price = 0, color = "") {
 
 
 function updateEquipButtons() {
-    const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
-    
-    equipButtons.forEach(function(button) {
-        const color = button.getAttribute('data-color');
-        const colors = getColors();
+  const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
 
-        if (colors.includes(color)) {
-            button.innerText = 'Unequip';
-        } else {
-            button.innerText = 'Equip';
-        }
-    });
+  equipButtons.forEach(function(button) {
+    const color = button.getAttribute('data-color');
+    const colors = getColors();
+
+    if (colors.includes(color)) {
+      button.innerText = 'Unequip';
+      button.style.backgroundColor = 'red'; // Add this line to set the button background color to red
+    } else {
+      button.innerText = 'Equip';
+      button.style.backgroundColor = ''; // Reset the button background color to default
+    }
+  });
 }
+
+
 
 
 
