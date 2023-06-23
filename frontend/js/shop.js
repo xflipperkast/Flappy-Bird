@@ -80,19 +80,22 @@ function buyColor(price = 0, color = "") {
 
 
 function updateEquipButtons() {
-    const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
-    
-    equipButtons.forEach(function(button) {
-        const color = button.getAttribute('data-color');
-        const colors = getColors();
+  const equipButtons = document.getElementById('shopBox').querySelectorAll('.equip-button');
 
-        if (colors.includes(color)) {
-            button.innerText = 'Unequip';
-        } else {
-            button.innerText = 'Equip';
-        }
-    });
+  equipButtons.forEach(function(button) {
+    const color = button.getAttribute('data-color');
+    const colors = getColors();
+
+    if (colors.includes(color)) {
+      button.innerText = 'Unequip';
+      button.style.color = 'red'; // Add this line to set the button color to red
+    } else {
+      button.innerText = 'Equip';
+      button.style.color = ''; // Reset the button color to default
+    }
+  });
 }
+
 
 
 
