@@ -394,7 +394,11 @@ function update() {
 
 //click (listeners)
 gameBox.addEventListener('click', fly);
-window.addEventListener('touchstart', fly);
+window.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    fly();
+}, { passive: false }); 
+
 window.addEventListener('keydown', function(e) {
     if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') fly();
 });
