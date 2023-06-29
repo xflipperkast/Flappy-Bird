@@ -48,3 +48,7 @@ button {
     font-weight: bold;
     margin: 8px;
 }
+
+#githubLink {
+    float: right;
+}
