@@ -168,8 +168,8 @@ function resetGround() {
         }
     ];
 
-    floors.forEach(function(floor, index) {
-        floor.style.left = floorLocations[index].x + 'px';
+    floorLocations.forEach(function(floorLocation, index) {
+        floors[index].style.left = floorLocation.x + 'px';
     });
 }
 
@@ -276,6 +276,11 @@ function startGame() {
 function gameOver() {
     isGameStarted = false;
     isGamePrepared = false;
+    
+    if (!isDead) { // !isDead means "if isDead is false"
+        deadSound.play();
+        isDead = true;
+    }
 
     // New game over animation
     if (birdY < 460) { // 480 is the height of the game area
@@ -287,11 +292,6 @@ function gameOver() {
             then = now - (delta % interval);
             birdY += 10; // This moves the bird down
             bird.style.top = birdY + 'px';
-        }
-
-        if (!isDead) { // !isDead means "if isDead is false"
-            deadSound.play();
-            isDead = true;
         }
 
         return;
@@ -418,6 +418,17 @@ touchBox.addEventListener('touchstart', function(e) {
 
 window.addEventListener('keydown', function(e) {
     if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') fly();
+});
+
+const phoneToggle = document.getElementById('switch')
+
+phoneToggle.addEventListener('click', function() {
+    if (phoneToggle.checked) {
+        touchBox.style.display = "block";
+        return;
+    }
+
+    touchBox.style.display = "none";
 });
 
 // Initially, hide bird and score, show game over message
