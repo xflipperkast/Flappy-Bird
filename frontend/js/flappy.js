@@ -1,5 +1,6 @@
 const bird = document.getElementById('bird');
 const gameBox = document.getElementById('gameBox');
+const touchBox = document.getElementById('touchBox');
 const obstacleTop = document.getElementsByClassName('obstacleTop');
 const obstacleBottom = document.getElementsByClassName('obstacleBottom');
 const scoreTag = document.getElementById('score');
@@ -390,11 +391,9 @@ function update() {
     scoreTag.innerHTML = 'Score: ' + scoreData.getScore();
 }
 
-
-
 //click (listeners)
 gameBox.addEventListener('click', fly);
-window.addEventListener('touchstart', function(e) {
+touchBox.addEventListener('touchstart', function(e) {
     e.preventDefault();
     fly();
 }, { passive: false }); 

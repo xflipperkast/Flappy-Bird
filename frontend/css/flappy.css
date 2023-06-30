@@ -137,3 +137,21 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 100;
 }
+
+#touchBox {
+    background-color: lightgray;
+    width: 640px;
+    height: 300px;
+    position: relative;
+    top: 0;
+    margin: 0 auto;
+    border: 1px solid black;
+    text-align: center;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #touchBox {
+        display: block;
+    }
+}
