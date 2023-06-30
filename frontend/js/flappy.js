@@ -156,6 +156,23 @@ function moveGround(beforeStart = false) {
 
 }
 
+function resetGround() {
+    floorLocations = [
+        {
+            x: 0,
+            y: 0
+        },
+        {
+            x: 640,
+            y: 0
+        }
+    ];
+
+    floors.forEach(function(floor, index) {
+        floor.style.left = floorLocations[index].x + 'px';
+    });
+}
+
 //color stuff
 function getBirdColor() {
     if (birds.length == 0) {
@@ -176,7 +193,6 @@ function getBirdColor() {
     lastBird = birdChoice;
 }
 
-
 //stuff before game
 function bobBird() {
     if (!isBobbing) return;
@@ -189,6 +205,7 @@ function bobBird() {
     moveGround(true);
     requestAnimationFrame(bobBird);
 }
+
 function prepareGameStart() {
     if (!isGameStarted && !isGamePrepared) {
         getBirdColor();
@@ -221,8 +238,6 @@ function prepareGameStart() {
         isGamePrepared = true;
     }
 }
-
-
 
 //starting the game
 function startGame() {
@@ -315,6 +330,9 @@ function gameOver() {
     checkMaxScoreCookie(scoreData.getScore());
     scoreData.resetScore();
     medalBox.style.display = 'block';
+
+    resetGround();
+
     setTimeout(() => { isDead = false }, 2000);
 }
 
