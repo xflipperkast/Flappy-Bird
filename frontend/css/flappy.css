@@ -11,6 +11,25 @@
     background-image: url(../images/background.png);
 }
 
+#scoreContainer {
+    z-index: 4;
+    width: calc(100% - 2px);
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	font-size: 2px;
+}
+
+#score {
+    color: white;
+    --borderColor: black;
+    font-size: 50px;
+    text-shadow: 3px 0 var(--borderColor), -3px 0 var(--borderColor), 0 3px var(--borderColor), 0 -3px var(--borderColor),
+             2px 2px var(--borderColor), -2px -2px var(--borderColor), 2px -2px var(--borderColor), -2px 2px var(--borderColor);
+    z-index: 4;
+}
+
 #background {
     position: absolute;
     width: 100%;

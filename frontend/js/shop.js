@@ -15,6 +15,7 @@ function makeShopCell(birdColor = 'Red', price = 200) {
     cell.setAttribute('class', 'cell');
     cell.innerHTML += `
         <img src="./frontend/images/Birds/${birdColor}.png" alt="${birdColor} bird" />
+		<br>
         <h3>${name}</h3>
         <div id="buy-${birdColor}">
             <button id="buy${birdColor}" class="buy-button"

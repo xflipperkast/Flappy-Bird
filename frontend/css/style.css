@@ -1,12 +1,12 @@
 @charset "utf-8";
 
 @font-face {
-    font-family: 'Roboto';
-    src: url(./fonts/Roboto-Regular.ttf);
+    font-family: 'Press Start 2P';
+    src: url(./fonts/PressStart2P-Regular.ttf);
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Press Start 2P', sans-serif;
     margin: 0;
     padding: 0;
 }

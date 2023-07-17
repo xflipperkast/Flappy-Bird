@@ -276,7 +276,7 @@ function startGame() {
 function gameOver() {
     isGameStarted = false;
     isGamePrepared = false;
-    
+
     if (!isDead) { // !isDead means "if isDead is false"
         deadSound.play();
         isDead = true;
@@ -400,13 +400,13 @@ function update() {
         if (birdY > 480|| 
           (obstacleX[i] < birdX + 20 && obstacleX[i] + 50 > birdX && 
           (birdY < obstacleTopHeight[i] || birdY + 20 > obstacleTopHeight[i] + gapHeight))) {
-            gameOverTag.innerHTML = "Game Over. Score: " + scoreData.getScore() + "<br> Best: " + getCookieData("maxScore");
+            gameOverTag.innerHTML = "Game Over.<br>Score: " + scoreData.getScore() + "<br> Best: " + getCookieData("maxScore");
             gameOver();
         }
 
     }
 
-    scoreTag.innerHTML = 'Score: ' + scoreData.getScore();
+    scoreTag.innerHTML = scoreData.getScore();
 }
 
 //click (listeners)
