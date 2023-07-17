@@ -319,6 +319,18 @@ function gameOver() {
         coinCollected = false;
     }
 
+	// Resets floor positions to original
+	floorLocations = [
+		{
+			x: 0,
+			y: 0
+		},
+		{
+			x: 640,
+			y: 0
+		}
+	];
+
     if (scoreData.getScore() >= 100) {
         goldMedal.style.display = 'block';
     } else if (scoreData.getScore() >= 50) {
