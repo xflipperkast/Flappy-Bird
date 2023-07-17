@@ -3,8 +3,8 @@
 */
 const cookies = ["colors", "maxScore", "coinAmount"];
     
-cookies.forEach((cookieName) => {
-    document.cookie =     document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/Flappy-Bird";
+cookies.forEach(function(cookie) {
+	deleteCookieFromOldPath(cookie);
 });
 
 /*
@@ -41,6 +41,11 @@ function setCookie(cookieValue, cookieName = "", daysUntillExpire = 1000) {
 
     const cookie = cookieName + "=" + cookieValue + ";" + expires.slice(0, -3) + "UTC;path=/";
     document.cookie = cookie;
+}
+
+// function to delete a cookie from the old path
+function deleteCookieFromOldPath(cookieName = "") {
+	document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/Flappy-Bird";
 }
 
 // This still needs to be used somewhere but for now it is unused code
@@ -144,11 +149,14 @@ function checkColors(cookieValue) {
         if (array.includes(cookieValue)) {
             return;
         }
+
         array.push(cookieValue);
         let valueForCookie = array.toString();
+
         if (valueForCookie.substring(0, 1) === ",") {
             valueForCookie = valueForCookie.slice(1);
         }
+		
         setCookie(valueForCookie, cookieName);
         return;
     }
